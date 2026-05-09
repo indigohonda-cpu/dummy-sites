@@ -6,9 +6,10 @@
 <title>東和金属工業株式会社</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
-:root { --primary:#1a1a2e; --accent:#e94560; --steel:#8892a4; --light:#f0f2f5; }
+:root{--primary:#1a1a2e;--accent:#e94560;--steel:#8892a4;--light:#f0f2f5;}
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Noto Sans JP',sans-serif;background:var(--light);color:var(--primary);}
+
 header{background:var(--primary);padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:70px;position:sticky;top:0;z-index:100;border-bottom:3px solid var(--accent);}
 .logo{display:flex;align-items:center;gap:14px;}
 .logo-mark{width:42px;height:42px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:22px;color:white;}
@@ -17,50 +18,62 @@ header{background:var(--primary);padding:0 40px;display:flex;align-items:center;
 nav a{color:var(--steel);text-decoration:none;font-size:13px;margin-left:30px;transition:color 0.2s;}
 nav a:hover{color:white;}
 
-.hero{position:relative;height:540px;overflow:hidden;display:flex;align-items:center;}
-.hero-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1400&auto=format&fit=crop');background-size:cover;background-position:center;filter:brightness(0.3);}
-.hero-content{position:relative;z-index:1;padding:0 60px;color:white;}
-.hero-tag{display:inline-block;background:var(--accent);color:white;font-size:11px;letter-spacing:3px;padding:4px 12px;margin-bottom:20px;text-transform:uppercase;}
-.hero h1{font-family:'Bebas Neue',sans-serif;font-size:72px;line-height:1.1;letter-spacing:2px;margin-bottom:20px;}
-.hero p{font-size:15px;color:rgba(255,255,255,0.75);max-width:520px;line-height:1.8;}
-.hero-stats{display:flex;gap:50px;margin-top:40px;}
-.stat-item strong{display:block;font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--accent);line-height:1;}
-.stat-item span{font-size:12px;color:rgba(255,255,255,0.5);letter-spacing:1px;}
+/* Full-width hero with lathe photo */
+.hero{position:relative;height:560px;overflow:hidden;display:flex;align-items:flex-end;}
+.hero-bg{position:absolute;inset:0;background-image:url('../images/photo-1558618666-fcd25c85cd64.jpeg');background-size:cover;background-position:center;}
+.hero-gradient{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,20,0.97) 0%,rgba(10,10,20,0.5) 50%,rgba(10,10,20,0.1) 100%);}
+.hero-content{position:relative;z-index:1;padding:50px 60px;color:white;width:100%;}
+.hero-tag{display:inline-block;background:var(--accent);color:white;font-size:11px;letter-spacing:3px;padding:4px 12px;margin-bottom:16px;text-transform:uppercase;}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:80px;line-height:1;letter-spacing:3px;margin-bottom:16px;}
+.hero-bottom{display:flex;align-items:flex-end;justify-content:space-between;}
+.hero p{font-size:14px;color:rgba(255,255,255,0.65);max-width:480px;line-height:1.8;}
+.hero-stats{display:flex;gap:40px;flex-shrink:0;}
+.stat-item strong{display:block;font-family:'Bebas Neue',sans-serif;font-size:44px;color:var(--accent);line-height:1;}
+.stat-item span{font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:1px;}
 
-.photo-strip{display:grid;grid-template-columns:repeat(3,1fr);height:220px;gap:3px;}
-.photo-strip img{width:100%;height:100%;object-fit:cover;filter:brightness(0.85);transition:filter 0.3s;}
-.photo-strip img:hover{filter:brightness(1);}
+/* Horizontal scrolling capability strip */
+.cap-strip{background:var(--primary);display:flex;overflow-x:auto;border-top:1px solid rgba(255,255,255,0.05);}
+.cap-strip::-webkit-scrollbar{display:none;}
+.cap-item{flex-shrink:0;padding:18px 32px;border-right:1px solid rgba(255,255,255,0.07);color:var(--steel);font-size:12px;letter-spacing:1px;white-space:nowrap;}
+.cap-item span{color:var(--accent);margin-right:8px;}
 
-.section{padding:70px 40px;}
-.section-label{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:10px;}
-.section h2{font-family:'Bebas Neue',sans-serif;font-size:42px;letter-spacing:2px;margin-bottom:40px;}
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:#ccc;}
-.service-card{background:white;padding:35px 30px;border-top:4px solid transparent;transition:border-color 0.2s;}
-.service-card:hover{border-top-color:var(--accent);}
-.service-num{font-family:'Bebas Neue',sans-serif;font-size:36px;color:#ddd;margin-bottom:10px;}
-.service-card h3{font-size:16px;font-weight:700;margin-bottom:10px;}
-.service-card p{font-size:13px;color:#666;line-height:1.7;}
+/* 3-col image + text services */
+.services{padding:70px 40px;}
+.sec-label{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:44px;letter-spacing:2px;margin-bottom:40px;}
+.service-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid #ddd;}
+.scard{border-right:1px solid #ddd;}
+.scard:last-child{border-right:none;}
+.scard-img{height:180px;overflow:hidden;}
+.scard-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s;}
+.scard:hover .scard-img img{transform:scale(1.05);}
+.scard-body{padding:28px 24px;border-top:3px solid transparent;transition:border-color 0.2s;}
+.scard:hover .scard-body{border-top-color:var(--accent);}
+.scard-num{font-family:'Bebas Neue',sans-serif;font-size:32px;color:#ddd;margin-bottom:8px;}
+.scard-body h3{font-size:16px;font-weight:700;margin-bottom:8px;}
+.scard-body p{font-size:13px;color:#666;line-height:1.7;}
 
-.about{display:grid;grid-template-columns:1fr 1fr;min-height:420px;}
-.about-photo{background-image:url('https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800&auto=format&fit=crop');background-size:cover;background-position:center;}
-.about-content{background:var(--primary);color:white;padding:60px 50px;}
-.about-content .section-label{color:var(--accent);}
-.about-content h2{font-family:'Bebas Neue',sans-serif;font-size:42px;letter-spacing:2px;margin-bottom:24px;}
-.about-content p{color:var(--steel);line-height:1.9;font-size:14px;margin-bottom:30px;}
-.company-info{display:grid;grid-template-columns:repeat(2,1fr);border:1px solid rgba(255,255,255,0.1);}
-.info-row{display:contents;}
-.info-label,.info-value{padding:12px 16px;font-size:12px;border-bottom:1px solid rgba(255,255,255,0.08);}
-.info-label{background:rgba(255,255,255,0.05);color:var(--steel);font-weight:700;}
-.info-value{color:white;}
+/* Split about: photo left, dark content right */
+.about{display:grid;grid-template-columns:1fr 1fr;}
+.about-img{position:relative;min-height:480px;overflow:hidden;}
+.about-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
+.about-content{background:var(--primary);padding:60px 50px;color:white;}
+.about-content .sec-label{color:var(--accent);}
+.about-content .sec-title{margin-bottom:20px;font-size:38px;}
+.about-content p{color:var(--steel);line-height:1.9;font-size:13px;margin-bottom:28px;}
+.co-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid rgba(255,255,255,0.08);}
+.co-cell{padding:12px 16px;font-size:12px;border-bottom:1px solid rgba(255,255,255,0.06);}
+.co-cell.label{background:rgba(255,255,255,0.04);color:var(--steel);font-weight:700;}
+.co-cell.value{color:white;}
 
-.form-section{padding:70px 40px;background:var(--light);}
-.form-section .section-label{color:var(--accent);}
-.form-section h2{font-family:'Bebas Neue',sans-serif;font-size:42px;letter-spacing:2px;margin-bottom:10px;}
-.form-section>p{color:#666;font-size:14px;margin-bottom:40px;}
-.form-wrapper{background:white;border-top:4px solid var(--accent);max-width:800px;}
-.form-wrapper iframe{width:100%;min-height:700px;border:none;display:block;}
+.form-sec{padding:70px 40px;background:var(--light);}
+.form-sec .sec-label{color:var(--accent);}
+.form-sec .sec-title{margin-bottom:10px;}
+.form-sec>p{color:#666;font-size:14px;margin-bottom:36px;}
+.form-wrap{background:white;border-top:4px solid var(--accent);max-width:820px;}
+.form-wrap iframe{width:100%;min-height:700px;border:none;display:block;}
 
-footer{background:#0d0d1a;color:var(--steel);padding:30px 40px;font-size:12px;display:flex;justify-content:space-between;align-items:center;}
+footer{background:#0d0d1a;color:var(--steel);padding:28px 40px;font-size:12px;display:flex;justify-content:space-between;}
 </style>
 </head>
 <body>
@@ -74,56 +87,74 @@ footer{background:#0d0d1a;color:var(--steel);padding:30px 40px;font-size:12px;di
 
 <section class="hero">
   <div class="hero-bg"></div>
+  <div class="hero-gradient"></div>
   <div class="hero-content">
     <div class="hero-tag">Since 1978</div>
     <h1>精密金属加工の<br>プロフェッショナル</h1>
-    <p>切削・プレス・溶接から表面処理まで。自動車・産業機械向けの高精度金属部品を一貫製造。46年の技術力でお客様のニーズに応えます。</p>
-    <div class="hero-stats">
-      <div class="stat-item"><strong>46<span style="font-size:22px">年</span></strong><span>創業からの歴史</span></div>
-      <div class="stat-item"><strong>300<span style="font-size:22px">社</span></strong><span>取引実績</span></div>
-      <div class="stat-item"><strong>±0.01<span style="font-size:18px">mm</span></strong><span>加工精度</span></div>
+    <div class="hero-bottom">
+      <p>切削・プレス・溶接から表面処理まで。自動車・産業機械向けの高精度金属部品を一貫製造。46年の技術力でお客様のニーズに応えます。</p>
+      <div class="hero-stats">
+        <div class="stat-item"><strong>46<small style="font-size:20px">年</small></strong><span>創業からの歴史</span></div>
+        <div class="stat-item"><strong>300<small style="font-size:20px">社</small></strong><span>取引実績</span></div>
+        <div class="stat-item"><strong>±0.01<small style="font-size:14px">mm</small></strong><span>加工精度</span></div>
+      </div>
     </div>
   </div>
 </section>
 
-<div class="photo-strip">
-  <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop" alt="工場設備">
-  <img src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=600&auto=format&fit=crop" alt="精密部品">
-  <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&auto=format&fit=crop" alt="製造ライン">
+<div class="cap-strip">
+  <div class="cap-item"><span>▶</span>CNC旋盤加工</div>
+  <div class="cap-item"><span>▶</span>マシニングセンタ</div>
+  <div class="cap-item"><span>▶</span>プレス加工</div>
+  <div class="cap-item"><span>▶</span>TIG・MIG溶接</div>
+  <div class="cap-item"><span>▶</span>表面処理</div>
+  <div class="cap-item"><span>▶</span>三次元測定</div>
+  <div class="cap-item"><span>▶</span>ISO9001認証</div>
+  <div class="cap-item"><span>▶</span>小ロット対応</div>
+  <div class="cap-item"><span>▶</span>図面・サンプルOK</div>
 </div>
 
-<section class="section">
-  <div class="section-label">Our Services</div>
-  <h2>主要事業</h2>
-  <div class="services-grid">
-    <div class="service-card"><div class="service-num">01</div><h3>精密切削加工</h3><p>CNCマシニングセンタによる高精度切削加工。複雑形状の部品製造に対応。</p></div>
-    <div class="service-card"><div class="service-num">02</div><h3>プレス加工</h3><p>板金・順送プレスによる大量生産対応。薄板から厚板まで幅広く対応可能。</p></div>
-    <div class="service-card"><div class="service-num">03</div><h3>溶接・組立</h3><p>TIG・MIG溶接から組立工程まで一貫対応。品質管理も徹底しております。</p></div>
+<section class="services">
+  <div class="sec-label">Our Services</div>
+  <div class="sec-title">主要事業</div>
+  <div class="service-cards">
+    <div class="scard">
+      <div class="scard-img"><img src="../images/photo-1558618666-fcd25c85cd64.jpeg" alt="切削加工"></div>
+      <div class="scard-body"><div class="scard-num">01</div><h3>精密切削加工</h3><p>CNCマシニングセンタによる高精度切削加工。複雑形状の部品製造に対応します。</p></div>
+    </div>
+    <div class="scard">
+      <div class="scard-img"><img src="../images/photo-1533106497176-45ae19e68ba2.jpeg" alt="プレス加工"></div>
+      <div class="scard-body"><div class="scard-num">02</div><h3>プレス・板金加工</h3><p>順送プレスによる大量生産対応。薄板から厚板まで幅広く対応可能。</p></div>
+    </div>
+    <div class="scard">
+      <div class="scard-img"><img src="../images/photo-1504917595217-d4dc5ebe6122.jpeg" alt="溶接"></div>
+      <div class="scard-body"><div class="scard-num">03</div><h3>溶接・組立</h3><p>TIG・MIG溶接から組立工程まで一貫対応。品質管理も徹底しております。</p></div>
+    </div>
   </div>
 </section>
 
 <section class="about">
-  <div class="about-photo"></div>
+  <div class="about-img"><img src="../images/photo-1565814329452-e1efa11c5b89.jpeg" alt="工場内部"></div>
   <div class="about-content">
-    <div class="section-label">Company</div>
-    <h2>会社概要</h2>
-    <p>1978年の創業以来、金属加工の専門メーカーとして自動車・産業機械向けの部品を製造。最新設備と熟練技術者による一貫生産体制で高品質・短納期を実現します。</p>
-    <div class="company-info">
-      <div class="info-row"><div class="info-label">社名</div><div class="info-value">東和金属工業株式会社</div></div>
-      <div class="info-row"><div class="info-label">設立</div><div class="info-value">1978年4月</div></div>
-      <div class="info-row"><div class="info-label">代表</div><div class="info-value">鈴木 正雄</div></div>
-      <div class="info-row"><div class="info-label">所在地</div><div class="info-value">愛知県名古屋市</div></div>
-      <div class="info-row"><div class="info-label">従業員</div><div class="info-value">120名</div></div>
-      <div class="info-row"><div class="info-label">資本金</div><div class="info-value">5,000万円</div></div>
+    <div class="sec-label">Company</div>
+    <div class="sec-title">会社概要</div>
+    <p>1978年の創業以来、金属加工の専門メーカーとして自動車・産業機械・建設設備向けの部品を製造。最新設備と熟練技術者による一貫生産体制で、高品質・短納期を実現します。</p>
+    <div class="co-grid">
+      <div class="co-cell label">社名</div><div class="co-cell value">東和金属工業株式会社</div>
+      <div class="co-cell label">設立</div><div class="co-cell value">1978年4月</div>
+      <div class="co-cell label">代表</div><div class="co-cell value">鈴木 正雄</div>
+      <div class="co-cell label">所在地</div><div class="co-cell value">愛知県名古屋市</div>
+      <div class="co-cell label">従業員</div><div class="co-cell value">120名</div>
+      <div class="co-cell label">資本金</div><div class="co-cell value">5,000万円</div>
     </div>
   </div>
 </section>
 
-<section class="form-section">
-  <div class="section-label">Contact</div>
-  <h2>お問い合わせ</h2>
+<section class="form-sec">
+  <div class="sec-label">Contact</div>
+  <div class="sec-title">お問い合わせ</div>
   <p>製品・加工技術・お見積りに関するご相談はこちらからお気軽にどうぞ。</p>
-  <div class="form-wrapper">
+  <div class="form-wrap">
     <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeeLgwx62FKGSVU91n9LZ0geWD87gk6I-oqnrDUqzqjhO-g3w/viewform?embedded=true">読み込んでいます…</iframe>
   </div>
 </section>
