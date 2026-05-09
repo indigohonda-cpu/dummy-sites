@@ -264,6 +264,7 @@ const DUMMY_COMPANIES = [
 ];
 
 let workbook = null;
+let uploadedFile = null;
 
 // ダミー会社表示
 const grid = document.getElementById('companiesGrid');
@@ -285,6 +286,7 @@ document.getElementById('fileInput').addEventListener('change', e => {
 });
 
 function handleFile(file) {
+  uploadedFile = file;
   const reader = new FileReader();
   reader.onload = e => {
     workbook = XLSX.read(e.target.result, { type: 'array' });
@@ -402,8 +404,7 @@ function processFile() {
   });
 
   // ダウンロード
-  const date = new Date().toISOString().slice(0, 10).replace(/-/g, '');
-  const filename = `★加工済みリスト_${date}.xlsx`;
+  const filename = `★${uploadedFile ? uploadedFile.name : '加工済みリスト.xlsx'}`;
 
   document.getElementById('resultText').innerHTML =
     summaryLines.join('<br>') + `<br><br>全シートにダミー5社を追加しました！`;
