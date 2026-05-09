@@ -4,69 +4,81 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>北陸精密機器株式会社</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;700&family=Noto+Sans+JP:wght@300;400;700&family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;700&family=Noto+Sans+JP:wght@300;400;700&family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#0a1628;--gold:#b8922a;--light-gold:#d4aa4a;--bg:#fafaf8;--text:#1a1a1a;--muted:#888;--border:#e0ddd5;}
+:root{--navy:#0a1628;--gold:#b8922a;--lg:#d4aa4a;--bg:#fafaf8;--text:#1a1a1a;--muted:#888;--border:#e0ddd5;}
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);}
+
 header{background:var(--navy);height:80px;padding:0 60px;display:flex;align-items:center;justify-content:space-between;}
 .logo{display:flex;align-items:center;gap:16px;}
 .logo-emblem{width:48px;height:48px;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--gold);}
-.logo-name{color:white;font-size:14px;font-weight:300;letter-spacing:2px;line-height:1.5;}
+.logo-name{color:white;font-size:13px;font-weight:300;letter-spacing:2px;line-height:1.5;}
 .logo-name strong{display:block;font-weight:700;font-size:13px;letter-spacing:3px;}
 nav a{color:rgba(255,255,255,0.5);text-decoration:none;font-size:12px;margin-left:36px;letter-spacing:2px;text-transform:uppercase;transition:color 0.2s;}
 nav a:hover{color:var(--gold);}
 
-.hero{position:relative;height:560px;overflow:hidden;display:flex;align-items:center;}
-.hero-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1400&auto=format&fit=crop');background-size:cover;background-position:center;filter:brightness(0.2);}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,22,40,0.9) 50%,rgba(10,22,40,0.4) 100%);}
-.hero-content{position:relative;z-index:1;padding:0 80px;color:white;max-width:680px;}
-.hero-label{font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:24px;}
-.hero h1{font-family:'Noto Serif JP',serif;font-size:50px;font-weight:300;color:white;line-height:1.5;letter-spacing:4px;margin-bottom:28px;}
-.hero h1 em{font-style:normal;color:var(--light-gold);font-weight:700;}
-.hero-text{color:rgba(255,255,255,0.55);font-size:13px;line-height:2;letter-spacing:1px;margin-bottom:40px;}
-.hero-specs{display:flex;gap:40px;}
-.spec{border-top:1px solid rgba(184,146,42,0.4);padding-top:14px;}
-.spec-num{font-family:'Cormorant Garamond',serif;font-size:36px;color:var(--gold);line-height:1;margin-bottom:6px;}
-.spec-label{font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:2px;text-transform:uppercase;}
+/* Full-screen hero with precision instrument photo */
+.hero{position:relative;height:100vh;max-height:700px;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.hero-bg{position:absolute;inset:0;background-image:url('../images/photo-1580983218765-f663bec07b37.jpeg');background-size:cover;background-position:center;filter:brightness(0.25);}
+.hero-overlay{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(10,22,40,0.4) 0%,rgba(10,22,40,0.9) 100%);}
+.hero-content{position:relative;z-index:1;text-align:center;color:white;padding:0 40px;}
+.hero-label{font-family:'Cormorant Garamond',serif;font-size:14px;letter-spacing:6px;color:var(--gold);text-transform:uppercase;margin-bottom:28px;}
+.hero h1{font-family:'Noto Serif JP',serif;font-size:58px;font-weight:300;line-height:1.5;letter-spacing:6px;margin-bottom:28px;}
+.hero h1 em{font-style:normal;color:var(--lg);font-weight:700;}
+.hero-text{color:rgba(255,255,255,0.5);font-size:14px;line-height:2;letter-spacing:1px;max-width:560px;margin:0 auto 48px;}
+.hero-divider{width:60px;height:1px;background:var(--gold);margin:0 auto 40px;}
+.hero-specs{display:flex;justify-content:center;gap:60px;}
+.spec{text-align:center;}
+.spec-num{font-family:'Cormorant Garamond',serif;font-size:40px;color:var(--gold);line-height:1;margin-bottom:6px;}
+.spec-label{font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:3px;text-transform:uppercase;}
 
-.photo-strip{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;height:200px;gap:2px;}
-.photo-strip img{width:100%;height:100%;object-fit:cover;filter:brightness(0.75) grayscale(20%);transition:filter 0.3s;}
-.photo-strip img:hover{filter:brightness(1) grayscale(0%);}
+/* Gold bar separator */
+.gold-bar{height:3px;background:linear-gradient(to right,transparent,var(--gold),transparent);}
 
-.divider{height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);margin:0 60px;}
-
-.section{padding:80px 60px;}
+/* Technology section: large photo + specs */
+.tech-section{padding:90px 60px;}
 .en-label{font-family:'Cormorant Garamond',serif;font-size:12px;letter-spacing:4px;color:var(--gold);text-transform:uppercase;margin-bottom:8px;}
-.section h2{font-family:'Noto Serif JP',serif;font-size:32px;font-weight:300;letter-spacing:4px;margin-bottom:50px;padding-bottom:20px;border-bottom:1px solid var(--border);}
-.tech-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);}
-.tech-card{background:var(--bg);padding:40px 32px;transition:background 0.2s;}
-.tech-card:hover{background:white;}
-.tech-img{height:140px;overflow:hidden;margin-bottom:20px;border-radius:2px;}
-.tech-img img{width:100%;height:100%;object-fit:cover;}
-.tech-num{font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:3px;color:var(--gold);margin-bottom:12px;}
-.tech-card h3{font-family:'Noto Serif JP',serif;font-size:17px;font-weight:400;letter-spacing:2px;margin-bottom:12px;}
-.tech-card p{font-size:13px;color:var(--muted);line-height:1.9;}
+h2{font-family:'Noto Serif JP',serif;font-size:34px;font-weight:300;letter-spacing:4px;margin-bottom:50px;padding-bottom:20px;border-bottom:1px solid var(--border);}
+.tech-layout{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:start;}
+.tech-main-img{height:460px;overflow:hidden;}
+.tech-main-img img{width:100%;height:100%;object-fit:cover;}
+.tech-items{display:flex;flex-direction:column;gap:0;}
+.tech-item{padding:28px 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:80px 1fr;gap:20px;align-items:start;}
+.tech-item:first-child{padding-top:0;}
+.tech-icon{width:56px;height:56px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:11px;color:var(--gold);letter-spacing:2px;text-align:center;line-height:1.3;}
+.tech-item h3{font-family:'Noto Serif JP',serif;font-size:16px;font-weight:400;letter-spacing:2px;margin-bottom:8px;}
+.tech-item p{font-size:12px;color:var(--muted);line-height:1.8;}
 
-.about-dark{background:var(--navy);padding:80px 60px;}
+/* Full-width image break */
+.img-break{height:320px;overflow:hidden;position:relative;}
+.img-break img{width:100%;height:100%;object-fit:cover;filter:brightness(0.5) grayscale(20%);}
+.img-break-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:white;}
+.img-break-text blockquote{font-family:'Noto Serif JP',serif;font-size:28px;font-weight:300;letter-spacing:4px;text-align:center;border-left:none;}
+
+/* Company: dark background */
+.about-dark{background:var(--navy);padding:90px 60px;}
 .about-dark .en-label{color:var(--gold);}
-.about-dark h2{font-family:'Noto Serif JP',serif;font-size:32px;font-weight:300;letter-spacing:4px;color:white;margin-bottom:40px;padding-bottom:20px;border-bottom:1px solid rgba(184,146,42,0.3);}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
-.about-photo{height:320px;overflow:hidden;}
-.about-photo img{width:100%;height:100%;object-fit:cover;filter:brightness(0.8) sepia(10%);}
-.about-text p{color:rgba(255,255,255,0.55);font-size:13px;line-height:2.1;letter-spacing:1px;margin-bottom:20px;}
-.co-table{margin-top:0;}
-.co-row{display:grid;grid-template-columns:140px 1fr;border-top:1px solid rgba(255,255,255,0.06);padding:14px 0;}
-.co-label{font-size:12px;color:var(--gold);letter-spacing:1px;}
-.co-value{font-size:13px;color:rgba(255,255,255,0.7);letter-spacing:1px;}
+.about-dark h2{color:white;border-bottom-color:rgba(184,146,42,0.3);}
+.about-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;}
+.about-photo-stack{position:relative;height:400px;}
+.photo-main{position:absolute;top:0;left:0;width:80%;height:85%;overflow:hidden;}
+.photo-main img{width:100%;height:100%;object-fit:cover;}
+.photo-sub{position:absolute;bottom:0;right:0;width:55%;height:55%;overflow:hidden;border:4px solid var(--navy);}
+.photo-sub img{width:100%;height:100%;object-fit:cover;}
+.about-text p{color:rgba(255,255,255,0.55);font-size:13px;line-height:2.1;letter-spacing:1px;margin-bottom:30px;}
+.co-list{border-top:1px solid rgba(255,255,255,0.08);}
+.co-item{display:grid;grid-template-columns:140px 1fr;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.05);}
+.co-key{font-size:11px;color:var(--gold);letter-spacing:1px;}
+.co-val{font-size:13px;color:rgba(255,255,255,0.65);}
 
-.form-section{padding:80px 60px;background:white;}
+.form-section{padding:90px 60px;background:white;}
 .form-section .en-label{color:var(--gold);}
-.form-section h2{font-family:'Noto Serif JP',serif;font-size:32px;font-weight:300;letter-spacing:4px;margin-bottom:40px;padding-bottom:20px;border-bottom:1px solid var(--border);}
-.form-box{max-width:780px;border:1px solid var(--border);}
+.form-section h2{border-bottom-color:var(--border);}
+.form-box{max-width:800px;border:1px solid var(--border);}
 .form-box iframe{width:100%;min-height:680px;border:none;display:block;}
 
-footer{background:#060e1a;color:rgba(255,255,255,0.3);padding:28px 60px;font-size:11px;display:flex;justify-content:space-between;letter-spacing:1px;}
+footer{background:#060e1a;color:rgba(255,255,255,0.25);padding:28px 60px;display:flex;justify-content:space-between;font-size:11px;letter-spacing:1px;}
 </style>
 </head>
 <body>
@@ -84,6 +96,7 @@ footer{background:#060e1a;color:rgba(255,255,255,0.3);padding:28px 60px;font-siz
   <div class="hero-content">
     <div class="hero-label">Precision · Quality · Trust</div>
     <h1>精密の極みを、<br><em>技術</em>で実現する。</h1>
+    <div class="hero-divider"></div>
     <p class="hero-text">北陸精密機器は、精密機械部品の設計・製造を専門とする会社です。航空宇宙・半導体・医療機器分野において、μmレベルの精度要求に応えてきた技術と実績があります。</p>
     <div class="hero-specs">
       <div class="spec"><div class="spec-num">±0.001mm</div><div class="spec-label">Max Precision</div></div>
@@ -93,58 +106,74 @@ footer{background:#060e1a;color:rgba(255,255,255,0.3);padding:28px 60px;font-siz
   </div>
 </section>
 
-<div class="photo-strip">
-  <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&auto=format&fit=crop" alt="精密機器">
-  <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=400&auto=format&fit=crop" alt="工場設備">
-  <img src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=400&auto=format&fit=crop" alt="部品検査">
-  <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&auto=format&fit=crop" alt="製造ライン">
-</div>
+<div class="gold-bar"></div>
 
-<div class="divider"></div>
-
-<section class="section">
+<section class="tech-section">
   <div class="en-label">Technology</div>
   <h2>技 術 領 域</h2>
-  <div class="tech-grid">
-    <div class="tech-card">
-      <div class="tech-img"><img src="https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=400&auto=format&fit=crop" alt="切削加工"></div>
-      <div class="tech-num">01 — MACHINING</div>
-      <h3>超精密切削加工</h3>
-      <p>5軸マシニングセンタによる複雑形状の超精密加工。サブミクロンレベルの面粗さを実現。</p>
+  <div class="tech-layout">
+    <div class="tech-main-img">
+      <img src="../images/photo-1580983218765-f663bec07b37.jpeg" alt="精密測定">
     </div>
-    <div class="tech-card">
-      <div class="tech-img"><img src="https://images.unsplash.com/photo-1563302111-eab4b145e6c9?w=400&auto=format&fit=crop" alt="研削"></div>
-      <div class="tech-num">02 — GRINDING</div>
-      <h3>精密研削・研磨</h3>
-      <p>円筒研削・平面研削・内面研削。鏡面仕上げから超硬材加工まで対応。</p>
-    </div>
-    <div class="tech-card">
-      <div class="tech-img"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&auto=format&fit=crop" alt="測定"></div>
-      <div class="tech-num">03 — INSPECTION</div>
-      <h3>三次元測定・検査</h3>
-      <p>三次元測定機による全数検査体制。測定結果の完全トレーサビリティを保証。</p>
+    <div class="tech-items">
+      <div class="tech-item">
+        <div class="tech-icon">CNC<br>MILL</div>
+        <div>
+          <h3>超精密切削加工</h3>
+          <p>5軸マシニングセンタによる複雑形状の超精密加工。サブミクロンレベルの面粗さを実現します。</p>
+        </div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-icon">GRD<br>POL</div>
+        <div>
+          <h3>精密研削・研磨</h3>
+          <p>円筒研削・平面研削・内面研削。鏡面仕上げから超硬材加工まで幅広く対応。</p>
+        </div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-icon">CMM<br>QC</div>
+        <div>
+          <h3>三次元測定・検査</h3>
+          <p>三次元測定機による全数検査体制。測定結果の完全トレーサビリティを保証します。</p>
+        </div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-icon">EDM<br>WIRE</div>
+        <div>
+          <h3>ワイヤー放電加工</h3>
+          <p>複雑形状・高硬度材への放電加工対応。金型製作にも実績多数。</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
+<div class="img-break">
+  <img src="../images/photo-1559297434-fae8a1916a79.jpeg" alt="精密部品">
+  <div class="img-break-text">
+    <blockquote>「精密とは、妥協なき追求の積み重ねである。」</blockquote>
+  </div>
+</div>
+
 <section class="about-dark">
   <div class="en-label">Company Profile</div>
   <h2>会 社 概 要</h2>
-  <div class="about-grid">
-    <div class="about-photo">
-      <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&auto=format&fit=crop" alt="工場外観">
+  <div class="about-layout">
+    <div class="about-photo-stack">
+      <div class="photo-main"><img src="../images/photo-1537462715879-360eeb61a0ad.jpeg" alt="工場外観"></div>
+      <div class="photo-sub"><img src="../images/photo-1580983218765-f663bec07b37.jpeg" alt="精密加工"></div>
     </div>
     <div>
       <div class="about-text">
-        <p>1972年の創業以来、北陸の地で精密機械部品製造の技術を磨き続けてまいりました。航空・宇宙・半導体製造装置・医療機器という高度な精度要求の分野において信頼のおけるパートナーとして評価いただいております。</p>
+        <p>1972年の創業以来、北陸の地で精密機械部品製造の技術を磨き続けてまいりました。航空・宇宙・半導体製造装置・医療機器という高度な精度要求の分野において、信頼のおけるパートナーとして評価いただいております。</p>
       </div>
-      <div class="co-table">
-        <div class="co-row"><div class="co-label">社名</div><div class="co-value">北陸精密機器株式会社</div></div>
-        <div class="co-row"><div class="co-label">設立</div><div class="co-value">1972年6月</div></div>
-        <div class="co-row"><div class="co-label">代表取締役</div><div class="co-value">山本 隆一</div></div>
-        <div class="co-row"><div class="co-label">所在地</div><div class="co-value">富山県富山市</div></div>
-        <div class="co-row"><div class="co-label">従業員数</div><div class="co-value">65名</div></div>
-        <div class="co-row"><div class="co-label">認証</div><div class="co-value">ISO9001 / AS9100D</div></div>
+      <div class="co-list">
+        <div class="co-item"><div class="co-key">社名</div><div class="co-val">北陸精密機器株式会社</div></div>
+        <div class="co-item"><div class="co-key">設立</div><div class="co-val">1972年6月</div></div>
+        <div class="co-item"><div class="co-key">代表取締役</div><div class="co-val">山本 隆一</div></div>
+        <div class="co-item"><div class="co-key">所在地</div><div class="co-val">富山県富山市</div></div>
+        <div class="co-item"><div class="co-key">従業員数</div><div class="co-val">65名</div></div>
+        <div class="co-item"><div class="co-key">認証</div><div class="co-val">ISO9001 / AS9100D</div></div>
       </div>
     </div>
   </div>
