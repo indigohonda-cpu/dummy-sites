@@ -116,19 +116,16 @@ body {
   background-position: right 14px center;
 }
 .col-select:focus { outline: none; border-color: var(--accent); }
-
-/* シート一覧 */
 .sheets-info {
   margin-top: 16px;
   padding: 14px 16px;
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: 6px;
-  font-size: 13px;
 }
-.sheets-info .sheets-title {
+.sheets-title {
   color: var(--muted);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   font-size: 12px;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -138,12 +135,16 @@ body {
   background: rgba(79,142,247,0.1);
   border: 1px solid rgba(79,142,247,0.2);
   color: var(--accent);
-  padding: 3px 10px;
+  padding: 4px 10px;
   border-radius: 4px;
   font-size: 12px;
   margin: 3px;
 }
-
+.sheet-tag.split {
+  background: rgba(255,165,0,0.1);
+  border-color: rgba(255,165,0,0.3);
+  color: #ffa500;
+}
 .companies-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -187,8 +188,17 @@ body {
   margin-top: 16px;
 }
 .result.visible { display: block; }
-.result h3 { color: var(--success); font-size: 16px; margin-bottom: 8px; }
-.result p { color: var(--muted); font-size: 13px; margin-bottom: 16px; line-height: 1.8; }
+.result h3 { color: var(--success); font-size: 16px; margin-bottom: 12px; }
+.result-lines {
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 16px;
+  line-height: 2;
+  text-align: left;
+  background: var(--bg);
+  padding: 12px 16px;
+  border-radius: 6px;
+}
 .btn-download {
   background: var(--success);
   color: white;
@@ -208,7 +218,7 @@ body {
 
 <div class="header">
   <h1>リスト加工ツール</h1>
-  <p>Excelの全シートにダミー会社5社をランダムな位置に追加して<br>検証用リストを自動生成します</p>
+  <p>995件超のシートは自動分割 → 各シートにダミー5社追加 → 1000件に</p>
 </div>
 
 <div class="card">
@@ -236,7 +246,7 @@ body {
   <select class="col-select" id="formUrlCol"></select>
 
   <div id="sheetsInfo" class="sheets-info" style="display:none">
-    <div class="sheets-title">📋 処理対象シート</div>
+    <div class="sheets-title">📋 処理対象シート（オレンジ = 分割予定）</div>
     <div id="sheetTags"></div>
   </div>
 
@@ -249,7 +259,7 @@ body {
 
   <div class="result" id="result">
     <h3>✅ 加工完了！</h3>
-    <p id="resultText"></p>
+    <div class="result-lines" id="resultText"></div>
     <button class="btn-download" id="downloadBtn">📥 Excelをダウンロード</button>
   </div>
 </div>
@@ -263,16 +273,15 @@ const DUMMY_COMPANIES = [
   { name: '大洋ゴム化工品株式会社', address: '兵庫県尼崎市', website: 'https://indigohonda-cpu.github.io/dummy-sites/taiyo-gomu/', tel: '', contact: '中村 浩司', formUrl: 'https://indigohonda-cpu.github.io/dummy-sites/taiyo-gomu/' }
 ];
 
+const MAX_ROWS = 995;
 let workbook = null;
 let uploadedFile = null;
 
-// ダミー会社表示
 const grid = document.getElementById('companiesGrid');
 DUMMY_COMPANIES.forEach(c => {
   grid.innerHTML += `<div class="company-item"><div class="company-name">${c.name}</div><div class="company-url">${c.formUrl}</div></div>`;
 });
 
-// ドラッグ＆ドロップ
 const uploadArea = document.getElementById('uploadArea');
 uploadArea.addEventListener('dragover', e => { e.preventDefault(); uploadArea.classList.add('drag-over'); });
 uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('drag-over'));
@@ -291,7 +300,6 @@ function handleFile(file) {
   reader.onload = e => {
     workbook = XLSX.read(e.target.result, { type: 'array' });
 
-    // 全シートの件数合計
     let totalRows = 0;
     workbook.SheetNames.forEach(name => {
       const sheet = workbook.Sheets[name];
@@ -301,15 +309,20 @@ function handleFile(file) {
 
     document.getElementById('fileName').textContent = file.name;
     document.getElementById('fileRows').textContent =
-      `${workbook.SheetNames.length}シート / 合計約${totalRows}行を読み込みました`;
+      `${workbook.SheetNames.length}シート / 合計約${totalRows}行`;
     document.getElementById('fileLoaded').style.display = 'flex';
 
-    // シート一覧表示
     const sheetTags = document.getElementById('sheetTags');
-    sheetTags.innerHTML = workbook.SheetNames.map(n => `<span class="sheet-tag">${n}</span>`).join('');
+    sheetTags.innerHTML = workbook.SheetNames.map(name => {
+      const sheet = workbook.Sheets[name];
+      const data = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: '' });
+      const rowCount = data.length;
+      const willSplit = rowCount > MAX_ROWS;
+      const splitCount = willSplit ? Math.ceil(rowCount / MAX_ROWS) : 1;
+      return `<span class="sheet-tag ${willSplit ? 'split' : ''}">${name}（${rowCount}件${willSplit ? ` → ${splitCount}分割` : ''}）</span>`;
+    }).join('');
     document.getElementById('sheetsInfo').style.display = 'block';
 
-    // 1シート目から列を自動検出
     const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
     const firstData = XLSX.utils.sheet_to_json(firstSheet, { header: 1, defval: '' });
     populateColumns(firstData[0] || [], firstData.slice(1));
@@ -333,13 +346,10 @@ function populateColumns(firstRow, data) {
     const header = firstRow[i] || `列${i + 1}`;
     const sample = data[0] ? String(data[0][i] || '').slice(0, 20) : '';
     const urlCount = data.slice(0, 10).filter(r => /https?:\/\//.test(r[i])).length;
-
     companyCol.appendChild(new Option(`${header}（例: ${sample}...）`, i));
     formUrlCol.appendChild(new Option(`${header}（例: ${sample}...）`, i));
-
     if (urlCount >= 3) formUrlGuess = i;
   }
-
   if (formUrlGuess >= 0) formUrlCol.value = formUrlGuess;
 }
 
@@ -351,12 +361,30 @@ function getRandomPositions(total, count) {
   return [...positions];
 }
 
+function addDummyRows(data, companyColIdx, formUrlColIdx) {
+  const numCols = data[0] ? data[0].length : 6;
+  const dummyRows = DUMMY_COMPANIES.map(c => {
+    const row = new Array(numCols).fill('');
+    row[companyColIdx] = c.name;
+    if (numCols > 1) row[Math.min(1, numCols - 1)] = c.address;
+    if (numCols > 2) row[Math.min(2, numCols - 1)] = c.website;
+    if (numCols > 3) row[Math.min(3, numCols - 1)] = c.tel;
+    if (numCols > 4) row[Math.min(4, numCols - 1)] = c.contact;
+    row[formUrlColIdx] = c.formUrl;
+    return row;
+  });
+  const result = [...data];
+  const positions = getRandomPositions(data.length, 5);
+  positions.sort((a, b) => b - a);
+  positions.forEach((pos, i) => result.splice(pos, 0, dummyRows[i]));
+  return result;
+}
+
 function processFile() {
   if (!workbook) return;
 
   const companyColIdx = parseInt(document.getElementById('companyCol').value);
   const formUrlColIdx = parseInt(document.getElementById('formUrlCol').value);
-
   const newWb = XLSX.utils.book_new();
   let summaryLines = [];
 
@@ -365,49 +393,38 @@ function processFile() {
     const rawData = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: '' });
 
     if (rawData.length === 0) {
-      XLSX.utils.book_append_sheet(newWb, sheet, sheetName);
+      XLSX.utils.book_append_sheet(newWb, XLSX.utils.aoa_to_sheet([]), sheetName);
       return;
     }
 
-    // ヘッダー判定
     const firstRow = rawData[0];
     const hasHeader = firstRow.some(cell =>
       typeof cell === 'string' && cell.length < 20 && !/https?:\/\//.test(cell)
     );
     const headers = hasHeader ? firstRow : null;
     const data = hasHeader ? rawData.slice(1) : rawData;
-    const numCols = data[0] ? data[0].length : 6;
 
-    // ダミー行作成
-    const dummyRows = DUMMY_COMPANIES.map(c => {
-      const row = new Array(numCols).fill('');
-      row[companyColIdx] = c.name;
-      if (numCols > 1) row[Math.min(1, numCols - 1)] = c.address;
-      if (numCols > 2) row[Math.min(2, numCols - 1)] = c.website;
-      if (numCols > 3) row[Math.min(3, numCols - 1)] = c.tel;
-      if (numCols > 4) row[Math.min(4, numCols - 1)] = c.contact;
-      row[formUrlColIdx] = c.formUrl;
-      return row;
-    });
-
-    // ランダム挿入
-    const positions = getRandomPositions(data.length, 5);
-    const result = [...data];
-    positions.sort((a, b) => b - a);
-    positions.forEach((pos, i) => result.splice(pos, 0, dummyRows[i]));
-
-    const wsData = headers ? [headers, ...result] : result;
-    const ws = XLSX.utils.aoa_to_sheet(wsData);
-    XLSX.utils.book_append_sheet(newWb, ws, sheetName);
-
-    summaryLines.push(`「${sheetName}」: ${data.length}件 → ${result.length}件`);
+    if (data.length <= MAX_ROWS) {
+      const result = addDummyRows(data, companyColIdx, formUrlColIdx);
+      const wsData = headers ? [headers, ...result] : result;
+      XLSX.utils.book_append_sheet(newWb, XLSX.utils.aoa_to_sheet(wsData), sheetName);
+      summaryLines.push(`✅ 「${sheetName}」: ${data.length}件 → ${result.length}件`);
+    } else {
+      let chunkIndex = 1;
+      for (let i = 0; i < data.length; i += MAX_ROWS) {
+        const chunk = data.slice(i, i + MAX_ROWS);
+        const result = addDummyRows(chunk, companyColIdx, formUrlColIdx);
+        const wsData = headers ? [headers, ...result] : result;
+        const newSheetName = chunkIndex === 1 ? sheetName : `${sheetName}_${chunkIndex}`;
+        XLSX.utils.book_append_sheet(newWb, XLSX.utils.aoa_to_sheet(wsData), newSheetName);
+        summaryLines.push(`✅ 「${newSheetName}」: ${chunk.length}件 → ${result.length}件`);
+        chunkIndex++;
+      }
+    }
   });
 
-  // ダウンロード
   const filename = `★${uploadedFile ? uploadedFile.name : '加工済みリスト.xlsx'}`;
-
-  document.getElementById('resultText').innerHTML =
-    summaryLines.join('<br>') + `<br><br>全シートにダミー5社を追加しました！`;
+  document.getElementById('resultText').innerHTML = summaryLines.join('<br>');
   document.getElementById('result').classList.add('visible');
   document.getElementById('downloadBtn').onclick = () => XLSX.writeFile(newWb, filename);
 }
