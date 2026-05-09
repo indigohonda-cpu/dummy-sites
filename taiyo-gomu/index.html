@@ -4,68 +4,79 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>大洋ゴム化工品株式会社</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-:root{--primary:#7b3f00;--accent:#c0622a;--warm:#f5e6d3;--bg:#fdf8f3;--dark:#2c1a0e;--muted:#8a6a50;--border:#e8d5c0;}
+:root{--brown:#7b3f00;--accent:#c0622a;--warm:#f5e6d3;--bg:#fdf8f3;--dark:#2c1a0e;--muted:#8a6a50;--border:#e8d5c0;}
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--dark);}
+
 header{background:var(--dark);height:72px;padding:0 52px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
 .logo{display:flex;align-items:center;gap:14px;}
 .logo-circle{width:44px;height:44px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:white;}
 .logo-name{font-size:13px;font-weight:700;color:white;line-height:1.4;}
 .logo-name small{display:block;font-size:10px;font-weight:300;color:rgba(255,255,255,0.4);letter-spacing:1px;}
 nav a{color:rgba(255,255,255,0.5);text-decoration:none;font-size:12px;margin-left:30px;transition:color 0.2s;}
-nav a:hover{color:#f5e6d3;}
+nav a:hover{color:var(--warm);}
 
-.hero{position:relative;height:540px;overflow:hidden;display:flex;align-items:center;}
-.hero-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1400&auto=format&fit=crop');background-size:cover;background-position:center;filter:brightness(0.25) sepia(40%);}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(44,26,14,0.92) 50%,rgba(44,26,14,0.5) 100%);}
-.hero-content{position:relative;z-index:1;padding:0 70px;color:white;max-width:680px;}
-.hero-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:20px;}
+/* Hero: warm full-width with rubber/industrial photo */
+.hero{position:relative;height:580px;overflow:hidden;display:flex;align-items:center;}
+.hero-bg{position:absolute;inset:0;background-image:url('../images/photo-1581092334651-ddf26d9a09d0.jpeg');background-size:cover;background-position:center;filter:brightness(0.3) sepia(30%);}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(44,26,14,0.95) 40%,rgba(44,26,14,0.4) 100%);}
+.hero-content{position:relative;z-index:1;padding:0 80px;color:white;max-width:660px;}
+.hero-year{font-family:'Playfair Display',serif;font-size:120px;font-weight:700;color:rgba(192,98,42,0.15);line-height:1;position:absolute;top:-20px;left:60px;pointer-events:none;user-select:none;}
+.eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:20px;}
 .eyebrow-line{width:30px;height:2px;background:var(--accent);}
 .eyebrow-text{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);font-weight:700;}
-.hero h1{font-family:'Playfair Display',serif;font-size:54px;font-weight:700;line-height:1.3;color:white;margin-bottom:22px;}
+.hero h1{font-family:'Playfair Display',serif;font-size:56px;font-weight:700;line-height:1.3;margin-bottom:22px;}
 .hero h1 em{font-style:italic;color:#f0b080;}
 .hero-text{font-size:14px;color:rgba(255,255,255,0.65);line-height:1.9;margin-bottom:36px;}
-.hero-feats{display:flex;flex-direction:column;gap:12px;}
-.feat-item{display:flex;align-items:center;gap:12px;font-size:13px;color:rgba(255,255,255,0.7);}
-.feat-icon{width:28px;height:28px;background:rgba(192,98,42,0.3);border:1px solid rgba(192,98,42,0.5);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;}
+.hero-cta{display:inline-block;border:1px solid rgba(192,98,42,0.6);color:var(--warm);padding:12px 28px;font-size:13px;letter-spacing:2px;text-decoration:none;text-transform:uppercase;transition:all 0.2s;}
+.hero-cta:hover{background:var(--accent);border-color:var(--accent);}
 
-.photo-strip{display:grid;grid-template-columns:1fr 1fr 1fr;height:220px;gap:3px;}
-.photo-strip img{width:100%;height:100%;object-fit:cover;filter:brightness(0.8) sepia(10%);transition:filter 0.3s;}
-.photo-strip img:hover{filter:brightness(1) sepia(0%);}
+/* Products: large photo grid with overlaid labels */
+.products-grid{display:grid;grid-template-columns:1fr 1fr 1fr;height:320px;gap:2px;}
+.prod-item{position:relative;overflow:hidden;}
+.prod-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s;filter:brightness(0.7);}
+.prod-item:hover img{transform:scale(1.06);filter:brightness(0.85);}
+.prod-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:24px 20px;background:linear-gradient(to top,rgba(0,0,0,0.7) 0%,transparent 60%);}
+.prod-num{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:rgba(192,98,42,0.7);line-height:1;margin-bottom:6px;}
+.prod-title{color:white;font-size:15px;font-weight:700;margin-bottom:4px;}
+.prod-desc{color:rgba(255,255,255,0.65);font-size:12px;line-height:1.5;}
 
-.section{padding:76px 52px;}
-.section-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
-.section-head::before{content:'';width:20px;height:2px;background:var(--accent);}
-.section-head span{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--accent);}
-h2{font-family:'Playfair Display',serif;font-size:36px;margin-bottom:44px;color:var(--dark);}
-.products-wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
-.prod-card{background:white;border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:box-shadow 0.2s;}
-.prod-card:hover{box-shadow:0 6px 24px rgba(0,0,0,0.08);}
-.prod-img{height:160px;overflow:hidden;}
-.prod-img img{width:100%;height:100%;object-fit:cover;}
-.prod-body{padding:22px 20px;}
-.prod-body h3{font-size:15px;font-weight:700;margin-bottom:8px;}
-.prod-body p{font-size:12px;color:var(--muted);line-height:1.7;}
+/* Timeline section */
+.timeline-section{padding:80px 52px;background:var(--warm);}
+.sec-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.sec-head::before{content:'';width:20px;height:2px;background:var(--accent);}
+.sec-head span{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--accent);}
+h2{font-family:'Playfair Display',serif;font-size:36px;margin-bottom:50px;color:var(--dark);}
+.timeline{position:relative;padding-left:40px;max-width:800px;}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--border);}
+.tl-item{position:relative;margin-bottom:40px;padding-left:30px;}
+.tl-dot{position:absolute;left:-46px;top:4px;width:14px;height:14px;background:var(--accent);border-radius:50%;border:2px solid var(--warm);}
+.tl-year{font-family:'Playfair Display',serif;font-size:14px;color:var(--accent);font-weight:700;letter-spacing:2px;margin-bottom:6px;}
+.tl-item h3{font-size:16px;font-weight:700;margin-bottom:6px;}
+.tl-item p{font-size:13px;color:var(--muted);line-height:1.7;}
 
-.about-section{background:var(--dark);padding:76px 52px;color:white;}
-.about-section .section-head::before{background:var(--accent);}
-.about-section .section-head span{color:var(--accent);}
+/* About: photo + table */
+.about-section{background:var(--dark);padding:80px 52px;color:white;}
+.about-section .sec-head::before{background:var(--accent);}
+.about-section .sec-head span{color:var(--accent);}
 .about-section h2{color:white;}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
-.about-photo{height:340px;overflow:hidden;border-radius:2px;}
-.about-photo img{width:100%;height:100%;object-fit:cover;filter:brightness(0.85) sepia(15%);}
-.about-text p{font-size:13px;line-height:2;color:rgba(255,255,255,0.6);margin-bottom:20px;}
-.co-list{border-top:1px solid rgba(255,255,255,0.1);}
-.co-item{display:grid;grid-template-columns:130px 1fr;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.07);font-size:13px;}
-.co-key{color:#c0622a;font-weight:700;}
-.co-val{color:rgba(255,255,255,0.7);}
+.about-layout{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:start;}
+.about-photo-block{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:200px 200px;gap:6px;}
+.ap{overflow:hidden;border-radius:2px;}
+.ap img{width:100%;height:100%;object-fit:cover;filter:brightness(0.8) sepia(10%);}
+.ap.main{grid-column:span 2;height:240px;}
+.about-info p{font-size:13px;color:rgba(255,255,255,0.55);line-height:2;margin-bottom:24px;}
+.co-list{border-top:1px solid rgba(255,255,255,0.08);}
+.co-item{display:grid;grid-template-columns:130px 1fr;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.06);}
+.co-key{font-size:12px;color:var(--accent);font-weight:700;}
+.co-val{font-size:13px;color:rgba(255,255,255,0.65);}
 
-.form-section{padding:76px 52px;background:var(--bg);}
+.form-section{padding:80px 52px;background:var(--bg);}
 .form-section h2{margin-bottom:14px;}
 .form-section>p{font-size:13px;color:var(--muted);margin-bottom:36px;line-height:1.8;}
-.form-box{max-width:780px;background:white;border:1px solid var(--border);border-radius:4px;overflow:hidden;}
+.form-box{max-width:780px;background:white;border:1px solid var(--border);overflow:hidden;}
 .form-box iframe{width:100%;min-height:680px;border:none;display:block;}
 
 footer{background:#1a0f07;color:rgba(255,255,255,0.3);padding:26px 52px;display:flex;justify-content:space-between;font-size:12px;}
@@ -83,55 +94,90 @@ footer{background:#1a0f07;color:rgba(255,255,255,0.3);padding:26px 52px;display:
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
+  <div class="hero-year">1969</div>
   <div class="hero-content">
-    <div class="hero-eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">Rubber & Seal Specialists</span></div>
+    <div class="eyebrow"><div class="eyebrow-line"></div><span class="eyebrow-text">創業55年の技術</span></div>
     <h1>密封技術で、<br>産業を<em>支える</em>。</h1>
     <p class="hero-text">ゴム・シール製品の設計・製造専門メーカーとして、自動車・建設機械・石油化学プラント向けの高耐久シール材を供給。特注品・OEMにも幅広く対応しています。</p>
-    <div class="hero-feats">
-      <div class="feat-item"><div class="feat-icon">🏭</div>多品種少量から量産まで対応</div>
-      <div class="feat-item"><div class="feat-icon">🔬</div>耐熱・耐薬品ゴムの専門技術</div>
-      <div class="feat-item"><div class="feat-icon">📐</div>図面・サンプルから即対応</div>
-    </div>
+    <a href="#contact" class="hero-cta">製品・見積もりの相談</a>
   </div>
 </section>
 
-<div class="photo-strip">
-  <img src="https://images.unsplash.com/photo-1563302111-eab4b145e6c9?w=600&auto=format&fit=crop" alt="製造設備">
-  <img src="https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=600&auto=format&fit=crop" alt="工場内部">
-  <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&auto=format&fit=crop" alt="品質管理">
+<div class="products-grid">
+  <div class="prod-item">
+    <img src="../images/photo-1581092334651-ddf26d9a09d0.jpeg" alt="Oリング">
+    <div class="prod-overlay">
+      <div class="prod-num">01</div>
+      <div class="prod-title">Oリング・ガスケット</div>
+      <div class="prod-desc">各種規格品・特注品に対応</div>
+    </div>
+  </div>
+  <div class="prod-item">
+    <img src="../images/photo-1565814329452-e1efa11c5b89.jpeg" alt="オイルシール">
+    <div class="prod-overlay">
+      <div class="prod-num">02</div>
+      <div class="prod-title">オイルシール</div>
+      <div class="prod-desc">高圧・高温環境に対応</div>
+    </div>
+  </div>
+  <div class="prod-item">
+    <img src="../images/photo-1537462715879-360eeb61a0ad.jpeg" alt="成形ゴム">
+    <div class="prod-overlay">
+      <div class="prod-num">03</div>
+      <div class="prod-title">成形ゴム製品</div>
+      <div class="prod-desc">射出・圧縮・トランスファ成形</div>
+    </div>
+  </div>
 </div>
 
-<section class="section">
-  <div class="section-head"><span>Products</span></div>
-  <h2>主な製品・サービス</h2>
-  <div class="products-wrap">
-    <div class="prod-card">
-      <div class="prod-img"><img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=400&auto=format&fit=crop" alt="Oリング"></div>
-      <div class="prod-body"><h3>Oリング・ガスケット</h3><p>各種規格品・特注品に対応。耐熱・耐油・耐薬品グレードも豊富に取り揃え。</p></div>
+<section class="timeline-section">
+  <div class="sec-head"><span>History</span></div>
+  <h2>創業からの歩み</h2>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1969年</div>
+      <h3>大洋ゴム化工品株式会社 創業</h3>
+      <p>兵庫県尼崎市にてゴム製品の製造・販売を開始。主に自動車向けシール材の製造からスタート。</p>
     </div>
-    <div class="prod-card">
-      <div class="prod-img"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&auto=format&fit=crop" alt="オイルシール"></div>
-      <div class="prod-body"><h3>オイルシール</h3><p>自動車・産業機械向けオイルシールの製造。高圧・高温環境下でも信頼性抜群。</p></div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1985年</div>
+      <h3>第二工場竣工・生産体制拡大</h3>
+      <p>需要増大に対応するため第二工場を竣工。射出成形・圧縮成形の設備を大幅に拡充。</p>
     </div>
-    <div class="prod-card">
-      <div class="prod-img"><img src="https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=400&auto=format&fit=crop" alt="成形ゴム"></div>
-      <div class="prod-body"><h3>成形ゴム製品</h3><p>射出・圧縮・トランスファ成形による各種ゴム成形品。形状・材質の相談も歓迎。</p></div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1998年</div>
+      <h3>ISO9001認証取得</h3>
+      <p>品質マネジメントシステムの国際規格ISO9001を取得。品質保証体制をさらに強化。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2010年</div>
+      <h3>石油化学・プラント向け事業拡大</h3>
+      <p>フッ素ゴム・シリコーンゴムを用いた高耐熱・耐薬品シール材の開発に成功。新分野へ進出。</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">現在</div>
+      <h3>創業55年、さらなる技術革新へ</h3>
+      <p>従業員72名体制で特注品・OEM製造に注力。脱炭素・環境対応素材の開発にも取り組んでいます。</p>
     </div>
   </div>
 </section>
 
 <section class="about-section">
-  <div class="section-head"><span>Company</span></div>
+  <div class="sec-head"><span>Company</span></div>
   <h2>会社概要</h2>
-  <div class="about-grid">
-    <div class="about-photo">
-      <img src="https://images.unsplash.com/photo-1563302111-eab4b145e6c9?w=800&auto=format&fit=crop" alt="工場">
+  <div class="about-layout">
+    <div class="about-photo-block">
+      <div class="ap main"><img src="../images/photo-1581092334651-ddf26d9a09d0.jpeg" alt="工場メイン"></div>
+      <div class="ap"><img src="../images/photo-1565814329452-e1efa11c5b89.jpeg" alt="製品1"></div>
+      <div class="ap"><img src="../images/photo-1537462715879-360eeb61a0ad.jpeg" alt="製品2"></div>
     </div>
-    <div>
-      <div class="about-text">
-        <p>大洋ゴム化工品株式会社は、1969年の創業以来、ゴム・シール製品の専門メーカーとして自動車・建設・石油化学・食品機械などの産業を支えてきました。</p>
-        <p>独自の配合技術と金型設計力を活かし、お客様の要求仕様に応じた特注品・OEM製品を迅速に提供。過酷な環境下でも確かな品質をお届けします。</p>
-      </div>
+    <div class="about-info">
+      <p>大洋ゴム化工品株式会社は、1969年の創業以来、ゴム・シール製品の専門メーカーとして自動車・建設・石油化学・食品機械などの産業を支えてきました。独自の配合技術と金型設計力を活かし、過酷な環境下でも確かな品質をお届けします。</p>
       <div class="co-list">
         <div class="co-item"><div class="co-key">社名</div><div class="co-val">大洋ゴム化工品株式会社</div></div>
         <div class="co-item"><div class="co-key">設立</div><div class="co-val">1969年11月</div></div>
@@ -144,8 +190,8 @@ footer{background:#1a0f07;color:rgba(255,255,255,0.3);padding:26px 52px;display:
   </div>
 </section>
 
-<section class="form-section">
-  <div class="section-head"><span>Contact</span></div>
+<section class="form-section" id="contact">
+  <div class="sec-head"><span>Contact</span></div>
   <h2>お問い合わせ</h2>
   <p>製品・特注品・OEMに関するご相談はこちらからどうぞ。担当営業よりご連絡いたします。</p>
   <div class="form-box">
