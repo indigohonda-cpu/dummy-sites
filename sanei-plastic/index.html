@@ -6,59 +6,72 @@
 <title>三栄プラスチック製造株式会社</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Montserrat:wght@400;800;900&display=swap" rel="stylesheet">
 <style>
-:root{--primary:#006341;--accent:#00a86b;--light-green:#e8f5f0;--dark:#1a1a1a;--gray:#666;--bg:#f8f9f8;}
+:root{--green:#006341;--accent:#00a86b;--light:#e8f5f0;--dark:#1a1a1a;--gray:#666;--bg:#f8faf8;}
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--dark);}
-header{background:white;padding:0 50px;height:72px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 1px 0 #e0e0e0;position:sticky;top:0;z-index:100;}
+
+header{background:white;padding:0 50px;height:72px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 12px rgba(0,0,0,0.06);position:sticky;top:0;z-index:100;}
 .logo{display:flex;align-items:center;gap:12px;}
-.logo-icon{width:44px;height:44px;background:linear-gradient(135deg,var(--primary),var(--accent));border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-family:'Montserrat',sans-serif;font-weight:900;font-size:18px;}
-.logo-name{font-size:15px;font-weight:700;color:var(--dark);line-height:1.3;}
+.logo-icon{width:44px;height:44px;background:linear-gradient(135deg,var(--green),var(--accent));border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-family:'Montserrat',sans-serif;font-weight:900;font-size:18px;}
+.logo-name{font-size:14px;font-weight:700;color:var(--dark);line-height:1.3;}
 .logo-name small{display:block;font-size:10px;font-weight:300;color:var(--gray);letter-spacing:1px;}
 nav a{color:var(--gray);text-decoration:none;font-size:13px;margin-left:32px;transition:color 0.2s;}
-nav a:hover{color:var(--primary);}
+nav a:hover{color:var(--green);}
 
-.hero{position:relative;height:520px;overflow:hidden;display:flex;align-items:center;}
-.hero-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=1400&auto=format&fit=crop');background-size:cover;background-position:center;filter:brightness(0.25);}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,99,65,0.7) 0%,rgba(0,50,30,0.5) 100%);}
-.hero-content{position:relative;z-index:1;padding:0 60px;color:white;max-width:700px;}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(0,212,150,0.4);color:#7fffcc;padding:5px 14px;border-radius:20px;font-size:11px;letter-spacing:1px;margin-bottom:22px;}
-.hero h1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:54px;line-height:1.15;margin-bottom:20px;}
-.hero h1 span{color:#7fffcc;}
-.hero p{font-size:14px;line-height:1.9;color:rgba(255,255,255,0.75);margin-bottom:32px;}
-.hero-metrics{display:flex;gap:40px;}
-.metric{border-left:2px solid var(--accent);padding-left:16px;}
-.metric-num{font-family:'Montserrat',sans-serif;font-weight:900;font-size:30px;color:white;line-height:1;margin-bottom:4px;}
-.metric-label{font-size:11px;color:rgba(255,255,255,0.4);}
+/* Hero: split layout - text left, large photo right */
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:520px;}
+.hero-left{background:linear-gradient(135deg,var(--green),#004d30);padding:80px 60px;display:flex;flex-direction:column;justify-content:center;color:white;}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,0.2);padding:5px 14px;border-radius:20px;font-size:11px;letter-spacing:1px;margin-bottom:24px;color:rgba(255,255,255,0.8);}
+.hero-left h1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:46px;line-height:1.2;margin-bottom:20px;}
+.hero-left h1 span{color:#7fffcc;}
+.hero-left p{font-size:14px;line-height:1.9;color:rgba(255,255,255,0.7);margin-bottom:32px;}
+.hero-metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+.metric-box{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);padding:16px;}
+.metric-box .num{font-family:'Montserrat',sans-serif;font-weight:900;font-size:28px;color:#7fffcc;line-height:1;margin-bottom:4px;}
+.metric-box .lbl{font-size:11px;color:rgba(255,255,255,0.5);}
+.hero-right{position:relative;overflow:hidden;}
+.hero-right img{width:100%;height:100%;object-fit:cover;}
 
-.photo-strip{display:grid;grid-template-columns:2fr 1fr 1fr;height:240px;gap:3px;}
-.photo-strip img{width:100%;height:100%;object-fit:cover;transition:filter 0.3s;}
-.photo-strip img:hover{filter:brightness(1.1);}
+/* Product mosaic grid */
+.mosaic{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:240px 240px;gap:3px;}
+.mosaic-item{overflow:hidden;position:relative;}
+.mosaic-item.tall{grid-row:span 2;}
+.mosaic-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s;}
+.mosaic-item:hover img{transform:scale(1.05);}
+.mosaic-label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent);color:white;padding:20px 16px 12px;font-size:13px;font-weight:700;}
 
-.section{padding:80px 50px;}
-.tag-line{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
-.tag-line::before{content:'';display:block;width:24px;height:3px;background:var(--accent);border-radius:2px;}
-.tag-line span{font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--accent);}
-h2{font-family:'Montserrat',sans-serif;font-weight:900;font-size:36px;margin-bottom:40px;line-height:1.2;}
-.products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
-.product-card{background:white;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.06);transition:transform 0.2s,box-shadow 0.2s;}
-.product-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.1);}
-.product-img{height:160px;overflow:hidden;}
-.product-img img{width:100%;height:100%;object-fit:cover;}
-.product-body{padding:24px;}
-.product-body h3{font-size:15px;font-weight:700;margin-bottom:8px;}
-.product-body p{font-size:13px;color:var(--gray);line-height:1.7;}
+/* Services: alternating left-right */
+.services{padding:80px 50px;}
+.tag-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.tag-row::before{content:'';width:24px;height:3px;background:var(--accent);}
+.tag-row span{font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--accent);}
+h2{font-family:'Montserrat',sans-serif;font-weight:900;font-size:36px;margin-bottom:50px;}
+.service-row{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:3px;border:1px solid #e0e0e0;}
+.service-row:last-child{margin-bottom:0;}
+.sr-img{overflow:hidden;height:220px;}
+.sr-img img{width:100%;height:100%;object-fit:cover;}
+.sr-body{padding:40px;display:flex;flex-direction:column;justify-content:center;background:white;}
+.sr-num{font-family:'Montserrat',sans-serif;font-weight:900;font-size:48px;color:#e8f5f0;line-height:1;margin-bottom:12px;}
+.sr-body h3{font-size:18px;font-weight:700;margin-bottom:10px;}
+.sr-body p{font-size:13px;color:var(--gray);line-height:1.8;}
+.service-row.reverse .sr-img{order:2;}
+.service-row.reverse .sr-body{order:1;}
 
-.about-section{background:var(--light-green);padding:80px 50px;}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
-.about-text p{font-size:14px;line-height:1.9;color:#444;margin-bottom:16px;}
-.company-table{background:white;border-radius:8px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.06);}
-.table-row{display:grid;grid-template-columns:130px 1fr;border-bottom:1px solid #f0f0f0;}
-.table-row:last-child{border-bottom:none;}
-.table-label{padding:14px 20px;font-size:13px;font-weight:700;color:var(--primary);background:#f8fdf9;}
-.table-value{padding:14px 20px;font-size:13px;color:var(--dark);}
+/* Company info: timeline style */
+.company{background:var(--light);padding:80px 50px;}
+.co-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+.co-img{border-radius:4px;overflow:hidden;height:360px;}
+.co-img img{width:100%;height:100%;object-fit:cover;}
+.co-info h2{margin-bottom:20px;}
+.co-info p{font-size:14px;color:#444;line-height:1.9;margin-bottom:30px;}
+.co-table{background:white;border-radius:6px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.06);}
+.co-row{display:grid;grid-template-columns:130px 1fr;border-bottom:1px solid #f0f0f0;}
+.co-row:last-child{border-bottom:none;}
+.co-key{padding:13px 18px;font-size:12px;font-weight:700;color:var(--green);background:#f5fbf8;}
+.co-val{padding:13px 18px;font-size:13px;}
 
-.form-section{padding:80px 50px;background:white;}
-.form-embed{max-width:760px;background:var(--bg);border-radius:8px;overflow:hidden;border:1px solid #e0ede6;}
+.form-sec{padding:80px 50px;background:white;}
+.form-embed{max-width:780px;background:var(--bg);border-radius:8px;overflow:hidden;border:1px solid #d0e8d8;}
 .form-embed iframe{width:100%;min-height:680px;border:none;display:block;}
 
 footer{background:var(--dark);color:#888;padding:28px 50px;display:flex;justify-content:space-between;font-size:12px;}
@@ -74,65 +87,82 @@ footer{background:var(--dark);color:#888;padding:28px 50px;display:flex;justify-
 </header>
 
 <section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <div class="hero-badge">🌱 環境対応素材に積極対応</div>
+  <div class="hero-left">
+    <div class="hero-tag">🌱 環境対応素材に積極対応</div>
     <h1>樹脂成形の<br><span>トータル</span><br>ソリューション</h1>
     <p>射出成形・押出成形・ブロー成形まで。家電・自動車・医療機器向け樹脂部品のOEM製造を手がけています。</p>
     <div class="hero-metrics">
-      <div class="metric"><div class="metric-num">38年</div><div class="metric-label">創業実績</div></div>
-      <div class="metric"><div class="metric-num">500+</div><div class="metric-label">製品種類</div></div>
-      <div class="metric"><div class="metric-num">ISO</div><div class="metric-label">9001取得</div></div>
+      <div class="metric-box"><div class="num">38年</div><div class="lbl">創業実績</div></div>
+      <div class="metric-box"><div class="num">500+</div><div class="lbl">製品種類</div></div>
+      <div class="metric-box"><div class="num">ISO</div><div class="lbl">9001取得</div></div>
+      <div class="metric-box"><div class="num">翌日</div><div class="lbl">試作対応</div></div>
     </div>
+  </div>
+  <div class="hero-right">
+    <img src="../images/photo-1614064641938-3bbee52942c7.jpeg" alt="プラスチック製造">
   </div>
 </section>
 
-<div class="photo-strip">
-  <img src="https://images.unsplash.com/photo-1563302111-eab4b145e6c9?w=800&auto=format&fit=crop" alt="製造ライン">
-  <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&auto=format&fit=crop" alt="プラスチック部品">
-  <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&auto=format&fit=crop" alt="品質検査">
+<div class="mosaic">
+  <div class="mosaic-item tall">
+    <img src="../images/photo-1620574387735-3624d75b2dbc.jpeg" alt="射出成形機">
+    <div class="mosaic-label">射出成形ライン</div>
+  </div>
+  <div class="mosaic-item">
+    <img src="../images/photo-1605557626277-9f2c4e6b5938.jpeg" alt="樹脂ペレット">
+    <div class="mosaic-label">原材料・樹脂ペレット</div>
+  </div>
+  <div class="mosaic-item">
+    <img src="../images/photo-1581092160607-ee22731c9b43.jpeg" alt="品質検査">
+    <div class="mosaic-label">品質検査工程</div>
+  </div>
+  <div class="mosaic-item">
+    <img src="../images/photo-1563302111-eab4b145e6c9.jpeg" alt="成形品">
+    <div class="mosaic-label">各種成形品</div>
+  </div>
+  <div class="mosaic-item">
+    <img src="../images/photo-1581092918056-0c4c3acd3789.jpeg" alt="組立">
+    <div class="mosaic-label">組立・出荷工程</div>
+  </div>
 </div>
 
-<section class="section">
-  <div class="tag-line"><span>Products & Services</span></div>
+<section class="services">
+  <div class="tag-row"><span>Services</span></div>
   <h2>製品・サービス</h2>
-  <div class="products-grid">
-    <div class="product-card">
-      <div class="product-img"><img src="https://images.unsplash.com/photo-1565814329452-e1efa11c5b89?w=400&auto=format&fit=crop" alt="射出成形"></div>
-      <div class="product-body"><h3>射出成形</h3><p>精密金型による高品質射出成形。小ロットから量産まで柔軟に対応。</p></div>
-    </div>
-    <div class="product-card">
-      <div class="product-img"><img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=400&auto=format&fit=crop" alt="押出成形"></div>
-      <div class="product-body"><h3>押出成形</h3><p>パイプ・チューブ・異形断面品など連続成形品の製造。</p></div>
-    </div>
-    <div class="product-card">
-      <div class="product-img"><img src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=400&auto=format&fit=crop" alt="OEM製造"></div>
-      <div class="product-body"><h3>OEM製造</h3><p>設計・試作・量産まで一貫したOEM製造サービスを提供。</p></div>
+  <div class="service-row">
+    <div class="sr-img"><img src="../images/photo-1614064641938-3bbee52942c7.jpeg" alt="射出成形"></div>
+    <div class="sr-body"><div class="sr-num">01</div><h3>射出成形</h3><p>精密金型による高品質射出成形。小ロットから大量生産まで柔軟に対応。複雑形状・薄肉成形も得意としています。</p></div>
+  </div>
+  <div class="service-row reverse">
+    <div class="sr-img"><img src="../images/photo-1620574387735-3624d75b2dbc.jpeg" alt="押出成形"></div>
+    <div class="sr-body"><div class="sr-num">02</div><h3>押出成形・ブロー成形</h3><p>パイプ・チューブ・異形断面品など連続成形品の製造。ボトル・タンクなど中空成形品も対応。</p></div>
+  </div>
+  <div class="service-row">
+    <div class="sr-img"><img src="../images/photo-1581092160607-ee22731c9b43.jpeg" alt="OEM"></div>
+    <div class="sr-body"><div class="sr-num">03</div><h3>OEM・受託製造</h3><p>設計・試作・量産まで一貫したOEM製造サービス。お客様のブランドで製品をお届けします。</p></div>
+  </div>
+</section>
+
+<section class="company">
+  <div class="tag-row"><span>Company</span></div>
+  <div class="co-grid">
+    <div class="co-img"><img src="../images/photo-1581092918056-0c4c3acd3789.jpeg" alt="工場外観"></div>
+    <div class="co-info">
+      <h2>会社概要</h2>
+      <p>三栄プラスチック製造株式会社は、1986年の創業以来、樹脂・プラスチック成形の専門メーカーとして幅広い産業分野に部品を供給してきました。ISO9001認証のもと、品質と環境への配慮を両立しています。</p>
+      <div class="co-table">
+        <div class="co-row"><div class="co-key">社名</div><div class="co-val">三栄プラスチック製造株式会社</div></div>
+        <div class="co-row"><div class="co-key">設立</div><div class="co-val">1986年9月</div></div>
+        <div class="co-row"><div class="co-key">代表取締役</div><div class="co-val">田中 義弘</div></div>
+        <div class="co-row"><div class="co-key">所在地</div><div class="co-val">大阪府東大阪市</div></div>
+        <div class="co-row"><div class="co-key">従業員数</div><div class="co-val">85名</div></div>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="about-section">
-  <div class="tag-line"><span>Company</span></div>
-  <h2>会社概要</h2>
-  <div class="about-grid">
-    <div class="about-text">
-      <p>三栄プラスチック製造株式会社は、1986年の創業以来、樹脂・プラスチック成形の専門メーカーとして幅広い産業分野に部品を供給してきました。</p>
-      <p>射出成形・押出成形・ブロー成形を軸に、家電・自動車・医療機器・食品包装向けの製品を一貫製造。ISO9001認証のもと品質と環境への配慮を両立しています。</p>
-    </div>
-    <div class="company-table">
-      <div class="table-row"><div class="table-label">社名</div><div class="table-value">三栄プラスチック製造株式会社</div></div>
-      <div class="table-row"><div class="table-label">設立</div><div class="table-value">1986年9月</div></div>
-      <div class="table-row"><div class="table-label">代表取締役</div><div class="table-value">田中 義弘</div></div>
-      <div class="table-row"><div class="table-label">所在地</div><div class="table-value">大阪府東大阪市</div></div>
-      <div class="table-row"><div class="table-label">従業員数</div><div class="table-value">85名</div></div>
-    </div>
-  </div>
-</section>
-
-<section class="form-section">
-  <div class="tag-line"><span>Contact</span></div>
+<section class="form-sec">
+  <div class="tag-row"><span>Contact</span></div>
   <h2>お問い合わせ</h2>
   <div class="form-embed">
     <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf59JnNjxngGOZFVD2mcvyfilx-IPwLOZjQH91A8N7AGzPwmA/viewform?embedded=true">読み込んでいます…</iframe>
