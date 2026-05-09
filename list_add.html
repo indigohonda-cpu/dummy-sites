@@ -403,7 +403,7 @@ function processFile() {
 
   // ダウンロード
   const date = new Date().toISOString().slice(0, 10).replace(/-/g, '');
-  const filename = `加工済みリスト_${date}.xlsx`;
+  const filename = `★加工済みリスト_${date}.xlsx`;
 
   document.getElementById('resultText').innerHTML =
     summaryLines.join('<br>') + `<br><br>全シートにダミー5社を追加しました！`;
