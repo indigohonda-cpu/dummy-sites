@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三栄プラスチック製造株式会社</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Montserrat:wght@400;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #006341;
+  --accent: #00a86b;
+  --light-green: #e8f5f0;
+  --dark: #1a1a1a;
+  --gray: #666;
+  --bg: #f8f9f8;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Noto Sans JP', sans-serif; background: var(--bg); color: var(--dark); }
+
+header {
+  background: white;
+  padding: 0 50px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 1px 0 #e0e0e0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.logo-icon {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 18px;
+}
+.logo-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.3;
+}
+.logo-name small {
+  display: block;
+  font-size: 10px;
+  font-weight: 300;
+  color: var(--gray);
+  letter-spacing: 1px;
+}
+nav a {
+  color: var(--gray);
+  text-decoration: none;
+  font-size: 13px;
+  margin-left: 32px;
+  transition: color 0.2s;
+}
+nav a:hover { color: var(--primary); }
+
+.hero {
+  background: linear-gradient(135deg, var(--primary) 0%, #004d30 100%);
+  color: white;
+  padding: 90px 50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.hero-left .tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+}
+.hero-left h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 52px;
+  line-height: 1.15;
+  margin-bottom: 20px;
+}
+.hero-left h1 span { color: #7fffcc; }
+.hero-left p {
+  font-size: 14px;
+  line-height: 1.9;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 32px;
+}
+.btn-primary {
+  display: inline-block;
+  background: white;
+  color: var(--primary);
+  padding: 14px 32px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.2s;
+}
+.btn-primary:hover { transform: translateY(-2px); }
+.hero-right {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.hero-card {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  padding: 24px 20px;
+}
+.hero-card .num {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 36px;
+  color: #7fffcc;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.hero-card p {
+  font-size: 12px;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.5;
+}
+
+.section { padding: 80px 50px; }
+.tag-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.tag-line::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+.tag-line span {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  font-size: 38px;
+  margin-bottom: 40px;
+  line-height: 1.2;
+}
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.product-card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+.product-top {
+  height: 120px;
+  background: var(--light-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+}
+.product-body { padding: 24px; }
+.product-body h3 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.product-body p {
+  font-size: 13px;
+  color: var(--gray);
+  line-height: 1.7;
+}
+
+.about-section {
+  background: var(--light-green);
+  padding: 80px 50px;
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+.about-text p {
+  font-size: 14px;
+  line-height: 1.9;
+  color: #444;
+  margin-bottom: 16px;
+}
+.company-table {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+.table-row {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  border-bottom: 1px solid #f0f0f0;
+}
+.table-row:last-child { border-bottom: none; }
+.table-label {
+  padding: 14px 20px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--primary);
+  background: #f8fdf9;
+}
+.table-value {
+  padding: 14px 20px;
+  font-size: 13px;
+  color: var(--dark);
+}
+
+.form-section {
+  padding: 80px 50px;
+  background: white;
+}
+.form-embed {
+  max-width: 760px;
+  background: var(--bg);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #e0ede6;
+}
+.form-embed iframe {
+  width: 100%;
+  min-height: 680px;
+  border: none;
+  display: block;
+}
+
+footer {
+  background: var(--dark);
+  color: #888;
+  padding: 28px 50px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon">SP</div>
+    <div class="logo-name">
+      三栄プラスチック製造株式会社
+      <small>Sanei Plastic Manufacturing</small>
+    </div>
+  </div>
+  <nav>
+    <a href="#">製品・技術</a>
+    <a href="#">OEM対応</a>
+    <a href="#">会社概要</a>
+    <a href="#">お問い合わせ</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="tag">🌱 環境対応素材に積極対応</div>
+    <h1>樹脂成形の<br><span>トータル</span><br>ソリューション</h1>
+    <p>射出成形・押出成形・ブロー成形まで。家電・自動車・医療機器向け樹脂部品のOEM製造を手がけています。設計段階からご相談ください。</p>
+    <a href="#contact" class="btn-primary">お問い合わせ・見積依頼</a>
+  </div>
+  <div class="hero-right">
+    <div class="hero-card">
+      <div class="num">38年</div>
+      <p>創業からの<br>実績</p>
+    </div>
+    <div class="hero-card">
+      <div class="num">500+</div>
+      <p>製品種類の<br>対応実績</p>
+    </div>
+    <div class="hero-card">
+      <div class="num">ISO</div>
+      <p>9001認証<br>取得済み</p>
+    </div>
+    <div class="hero-card">
+      <div class="num">翌日</div>
+      <p>試作品対応<br>可能</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="tag-line"><span>Products & Services</span></div>
+  <h2>製品・サービス</h2>
+  <div class="products-grid">
+    <div class="product-card">
+      <div class="product-top">⚙️</div>
+      <div class="product-body">
+        <h3>射出成形</h3>
+        <p>精密金型による高品質射出成形。小ロットから量産まで柔軟に対応。</p>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-top">🔧</div>
+      <div class="product-body">
+        <h3>押出成形</h3>
+        <p>パイプ・チューブ・異形断面品など連続成形品の製造。</p>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-top">📦</div>
+      <div class="product-body">
+        <h3>OEM製造</h3>
+        <p>設計・試作・量産まで一貫したOEM製造サービスを提供。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about-section">
+  <div class="tag-line"><span>Company</span></div>
+  <h2>会社概要</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>三栄プラスチック製造株式会社は、1986年の創業以来、樹脂・プラスチック成形の専門メーカーとして幅広い産業分野に部品を供給してきました。</p>
+      <p>射出成形・押出成形・ブロー成形を軸に、家電・自動車・医療機器・食品包装向けの製品を一貫製造。ISO9001認証のもと、品質と環境への配慮を両立しています。</p>
+    </div>
+    <div class="company-table">
+      <div class="table-row">
+        <div class="table-label">社名</div>
+        <div class="table-value">三栄プラスチック製造株式会社</div>
+      </div>
+      <div class="table-row">
+        <div class="table-label">設立</div>
+        <div class="table-value">1986年9月</div>
+      </div>
+      <div class="table-row">
+        <div class="table-label">代表取締役</div>
+        <div class="table-value">田中 義弘</div>
+      </div>
+      <div class="table-row">
+        <div class="table-label">所在地</div>
+        <div class="table-value">大阪府東大阪市</div>
+      </div>
+      <div class="table-row">
+        <div class="table-label">従業員数</div>
+        <div class="table-value">85名</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="form-section" id="contact">
+  <div class="tag-line"><span>Contact</span></div>
+  <h2>お問い合わせ</h2>
+  <div class="form-embed">
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf59JnNjxngGOZFVD2mcvyfilx-IPwLOZjQH91A8N7AGzPwmA/viewform?embedded=true">読み込んでいます…</iframe>
+  </div>
+</section>
+
+<footer>
+  <span>© 2024 三栄プラスチック製造株式会社</span>
+  <span>大阪府東大阪市 | TEL: 06-XXXX-XXXX</span>
+</footer>
+
+</body>
+</html>

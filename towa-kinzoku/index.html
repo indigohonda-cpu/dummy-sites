@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>東和金属工業株式会社</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #1a1a2e;
+  --accent: #e94560;
+  --steel: #8892a4;
+  --light: #f0f2f5;
+  --white: #ffffff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Noto Sans JP', sans-serif; background: var(--light); color: var(--primary); }
+
+/* Header */
+header {
+  background: var(--primary);
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 3px solid var(--accent);
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.logo-mark {
+  width: 42px;
+  height: 42px;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  color: white;
+  letter-spacing: 1px;
+}
+.logo-text {
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+.logo-text span {
+  display: block;
+  font-size: 10px;
+  font-weight: 300;
+  color: var(--steel);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+nav a {
+  color: var(--steel);
+  text-decoration: none;
+  font-size: 13px;
+  margin-left: 30px;
+  letter-spacing: 1px;
+  transition: color 0.2s;
+}
+nav a:hover { color: white; }
+
+/* Hero */
+.hero {
+  background: var(--primary);
+  color: white;
+  padding: 80px 40px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: 'TW';
+  position: absolute;
+  right: -20px;
+  top: -40px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 280px;
+  color: rgba(255,255,255,0.03);
+  line-height: 1;
+}
+.hero-tag {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  font-size: 11px;
+  letter-spacing: 3px;
+  padding: 4px 12px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+.hero h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 64px;
+  line-height: 1.1;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+.hero p {
+  font-size: 15px;
+  color: var(--steel);
+  max-width: 500px;
+  line-height: 1.8;
+}
+.hero-stats {
+  display: flex;
+  gap: 50px;
+  margin-top: 50px;
+}
+.stat-item strong {
+  display: block;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 48px;
+  color: var(--accent);
+  line-height: 1;
+}
+.stat-item span {
+  font-size: 12px;
+  color: var(--steel);
+  letter-spacing: 1px;
+}
+
+/* Services */
+.section {
+  padding: 70px 40px;
+}
+.section-label {
+  font-size: 11px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+.section h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 42px;
+  letter-spacing: 2px;
+  margin-bottom: 40px;
+}
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: #ccc;
+}
+.service-card {
+  background: white;
+  padding: 35px 30px;
+  border-top: 4px solid transparent;
+  transition: border-color 0.2s;
+}
+.service-card:hover { border-top-color: var(--accent); }
+.service-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px;
+  color: #ddd;
+  margin-bottom: 10px;
+}
+.service-card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.service-card p {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.7;
+}
+
+/* About */
+.about {
+  background: var(--primary);
+  color: white;
+  padding: 70px 40px;
+}
+.about .section-label { color: var(--accent); }
+.about h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 42px;
+  letter-spacing: 2px;
+  margin-bottom: 30px;
+}
+.about p {
+  color: var(--steel);
+  line-height: 1.9;
+  max-width: 700px;
+  font-size: 14px;
+}
+.company-info {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border: 1px solid rgba(255,255,255,0.1);
+  max-width: 600px;
+}
+.info-row {
+  display: contents;
+}
+.info-label, .info-value {
+  padding: 14px 20px;
+  font-size: 13px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.info-label {
+  background: rgba(255,255,255,0.05);
+  color: var(--steel);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.info-value { color: white; }
+
+/* Form Section */
+.form-section {
+  padding: 70px 40px;
+  background: var(--light);
+}
+.form-section .section-label { color: var(--accent); }
+.form-section h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 42px;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+.form-section > p {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 40px;
+}
+.form-wrapper {
+  background: white;
+  border-top: 4px solid var(--accent);
+  padding: 0;
+  max-width: 800px;
+}
+.form-wrapper iframe {
+  width: 100%;
+  min-height: 700px;
+  border: none;
+  display: block;
+}
+
+/* Footer */
+footer {
+  background: #0d0d1a;
+  color: var(--steel);
+  padding: 30px 40px;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-mark">TW</div>
+    <div class="logo-text">
+      東和金属工業株式会社
+      <span>Towa Metal Industries</span>
+    </div>
+  </div>
+  <nav>
+    <a href="#">事業内容</a>
+    <a href="#">製品情報</a>
+    <a href="#">会社概要</a>
+    <a href="#">お問い合わせ</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-tag">Since 1978</div>
+  <h1>精密金属加工の<br>プロフェッショナル</h1>
+  <p>切削・プレス・溶接から表面処理まで。自動車・産業機械・建設設備向けの高精度金属部品を一貫製造。46年の技術力で、お客様のニーズに応えます。</p>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <strong>46<span style="font-size:24px">年</span></strong>
+      <span>創業からの歴史</span>
+    </div>
+    <div class="stat-item">
+      <strong>300<span style="font-size:24px">社</span></strong>
+      <span>取引実績</span>
+    </div>
+    <div class="stat-item">
+      <strong>±0.01<span style="font-size:24px">mm</span></strong>
+      <span>加工精度</span>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-label">Our Services</div>
+  <h2>主要事業</h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <h3>精密切削加工</h3>
+      <p>CNCマシニングセンタによる高精度切削加工。複雑形状の部品製造に対応。</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <h3>プレス加工</h3>
+      <p>板金・順送プレスによる大量生産対応。薄板から厚板まで幅広く対応可能。</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <h3>溶接・組立</h3>
+      <p>TIG・MIG溶接から組立工程まで一貫対応。品質管理も徹底しております。</p>
+    </div>
+  </div>
+</section>
+
+<section class="about">
+  <div class="section-label">Company</div>
+  <h2>会社概要</h2>
+  <p>東和金属工業株式会社は、1978年の創業以来、金属加工の専門メーカーとして自動車・産業機械・建設設備向けの部品を製造してまいりました。最新設備と熟練技術者による一貫生産体制で、高品質・短納期・コスト削減を実現します。</p>
+  <div class="company-info">
+    <div class="info-row">
+      <div class="info-label">社名</div>
+      <div class="info-value">東和金属工業株式会社</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">設立</div>
+      <div class="info-value">1978年4月</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">代表取締役</div>
+      <div class="info-value">鈴木 正雄</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">所在地</div>
+      <div class="info-value">愛知県名古屋市中村区</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">従業員数</div>
+      <div class="info-value">120名</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">資本金</div>
+      <div class="info-value">5,000万円</div>
+    </div>
+  </div>
+</section>
+
+<section class="form-section">
+  <div class="section-label">Contact</div>
+  <h2>お問い合わせ</h2>
+  <p>製品・加工技術・お見積りに関するご相談はこちらからお気軽にどうぞ。</p>
+  <div class="form-wrapper">
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeeLgwx62FKGSVU91n9LZ0geWD87gk6I-oqnrDUqzqjhO-g3w/viewform?embedded=true">読み込んでいます…</iframe>
+  </div>
+</section>
+
+<footer>
+  <span>© 2024 東和金属工業株式会社 All Rights Reserved.</span>
+  <span>愛知県名古屋市中村区 | TEL: 052-XXX-XXXX</span>
+</footer>
+
+</body>
+</html>
