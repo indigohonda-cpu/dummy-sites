@@ -14,6 +14,7 @@
   --accent: #4f8ef7;
   --accent2: #7c4dff;
   --success: #2ecc71;
+  --danger: #e74c3c;
   --text: #e8eaf0;
   --muted: #6b7590;
 }
@@ -60,13 +61,7 @@ body {
   align-items: center;
   gap: 8px;
 }
-.card-title::before {
-  content: '';
-  width: 4px;
-  height: 16px;
-  background: var(--accent);
-  border-radius: 2px;
-}
+.card-title::before { content: ''; width: 4px; height: 16px; background: var(--accent); border-radius: 2px; }
 .upload-area {
   border: 2px dashed var(--border);
   border-radius: 8px;
@@ -75,141 +70,96 @@ body {
   cursor: pointer;
   transition: all 0.2s;
 }
-.upload-area:hover, .upload-area.drag-over {
-  border-color: var(--accent);
-  background: rgba(79,142,247,0.05);
-}
+.upload-area:hover, .upload-area.drag-over { border-color: var(--accent); background: rgba(79,142,247,0.05); }
 .upload-icon { font-size: 36px; margin-bottom: 12px; }
 .upload-area h3 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
 .upload-area p { font-size: 13px; color: var(--muted); }
 #fileInput { display: none; }
 .file-loaded {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+  display: flex; align-items: center; gap: 12px;
   padding: 16px;
   background: rgba(46,204,113,0.08);
   border: 1px solid rgba(46,204,113,0.2);
-  border-radius: 8px;
-  margin-top: 16px;
+  border-radius: 8px; margin-top: 16px;
 }
 .file-loaded .file-icon { font-size: 24px; }
-.file-loaded .file-info { flex: 1; }
 .file-loaded .file-name { font-size: 14px; font-weight: 700; color: var(--success); }
 .file-loaded .file-rows { font-size: 12px; color: var(--muted); margin-top: 2px; }
 .col-selector { display: none; }
 .col-selector.visible { display: block; }
 .col-label { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
 .col-select {
-  width: 100%;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 10px 14px;
-  color: var(--text);
-  font-size: 14px;
-  font-family: 'Noto Sans JP', sans-serif;
-  cursor: pointer;
-  appearance: none;
+  width: 100%; background: var(--bg); border: 1px solid var(--border);
+  border-radius: 6px; padding: 10px 14px; color: var(--text);
+  font-size: 14px; font-family: 'Noto Sans JP', sans-serif; cursor: pointer; appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7590' stroke-width='2' fill='none'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 14px center;
+  background-repeat: no-repeat; background-position: right 14px center;
 }
 .col-select:focus { outline: none; border-color: var(--accent); }
-.sheets-info {
-  margin-top: 16px;
-  padding: 14px 16px;
+
+/* 削除列チェックボックス */
+.delete-cols-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-top: 4px;
+}
+.delete-col-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s;
 }
-.sheets-title {
-  color: var(--muted);
-  margin-bottom: 10px;
-  font-size: 12px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+.delete-col-item:hover { border-color: var(--danger); background: rgba(231,76,60,0.05); }
+.delete-col-item.checked { border-color: var(--danger); background: rgba(231,76,60,0.1); }
+.delete-col-item input[type="checkbox"] { accent-color: var(--danger); width: 14px; height: 14px; cursor: pointer; }
+.delete-col-name { font-size: 12px; color: var(--text); flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.delete-col-sample { font-size: 10px; color: var(--muted); }
+
+.sheets-info {
+  margin-top: 16px; padding: 14px 16px;
+  background: var(--bg); border: 1px solid var(--border); border-radius: 6px;
 }
+.sheets-title { color: var(--muted); margin-bottom: 10px; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; }
 .sheet-tag {
   display: inline-block;
-  background: rgba(79,142,247,0.1);
-  border: 1px solid rgba(79,142,247,0.2);
-  color: var(--accent);
-  padding: 4px 10px;
-  border-radius: 4px;
-  font-size: 12px;
-  margin: 3px;
+  background: rgba(79,142,247,0.1); border: 1px solid rgba(79,142,247,0.2);
+  color: var(--accent); padding: 4px 10px; border-radius: 4px; font-size: 12px; margin: 3px;
 }
-.sheet-tag.split {
-  background: rgba(255,165,0,0.1);
-  border-color: rgba(255,165,0,0.3);
-  color: #ffa500;
-}
-.companies-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-.company-item {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 12px 14px;
-  font-size: 12px;
-}
+.sheet-tag.split { background: rgba(255,165,0,0.1); border-color: rgba(255,165,0,0.3); color: #ffa500; }
+.companies-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.company-item { background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; font-size: 12px; }
 .company-name { font-weight: 700; margin-bottom: 4px; color: var(--text); }
 .company-url { color: var(--accent); font-size: 11px; word-break: break-all; }
 .btn-process {
   width: 100%;
   background: linear-gradient(135deg, var(--accent), var(--accent2));
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 16px;
-  font-size: 15px;
-  font-weight: 700;
-  font-family: 'Noto Sans JP', sans-serif;
-  cursor: pointer;
-  transition: opacity 0.2s, transform 0.1s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 8px;
+  color: white; border: none; border-radius: 8px; padding: 16px;
+  font-size: 15px; font-weight: 700; font-family: 'Noto Sans JP', sans-serif;
+  cursor: pointer; transition: opacity 0.2s, transform 0.1s;
+  display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 8px;
 }
 .btn-process:hover { opacity: 0.9; transform: translateY(-1px); }
 .result {
-  display: none;
-  background: rgba(46,204,113,0.08);
-  border: 1px solid rgba(46,204,113,0.3);
-  border-radius: 8px;
-  padding: 20px;
-  text-align: center;
-  margin-top: 16px;
+  display: none; background: rgba(46,204,113,0.08);
+  border: 1px solid rgba(46,204,113,0.3); border-radius: 8px;
+  padding: 20px; text-align: center; margin-top: 16px;
 }
 .result.visible { display: block; }
 .result h3 { color: var(--success); font-size: 16px; margin-bottom: 12px; }
 .result-lines {
-  color: var(--muted);
-  font-size: 13px;
-  margin-bottom: 16px;
-  line-height: 2;
-  text-align: left;
-  background: var(--bg);
-  padding: 12px 16px;
-  border-radius: 6px;
+  color: var(--muted); font-size: 13px; margin-bottom: 16px; line-height: 2;
+  text-align: left; background: var(--bg); padding: 12px 16px; border-radius: 6px;
 }
 .btn-download {
-  background: var(--success);
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 12px 28px;
-  font-size: 14px;
-  font-weight: 700;
-  font-family: 'Noto Sans JP', sans-serif;
-  cursor: pointer;
-  transition: opacity 0.2s;
+  background: var(--success); color: white; border: none; border-radius: 6px;
+  padding: 12px 28px; font-size: 14px; font-weight: 700;
+  font-family: 'Noto Sans JP', sans-serif; cursor: pointer; transition: opacity 0.2s;
 }
 .btn-download:hover { opacity: 0.85; }
 </style>
@@ -218,7 +168,7 @@ body {
 
 <div class="header">
   <h1>リスト加工ツール</h1>
-  <p>995件超のシートは自動分割 → 各シートにダミー5社追加 → 1000件に</p>
+  <p>995件超は自動分割 → 不要列を削除 → ダミー5社追加 → 1000件に</p>
 </div>
 
 <div class="card">
@@ -239,13 +189,18 @@ body {
 </div>
 
 <div class="card col-selector" id="colSelector">
-  <div class="card-title">Step 2 — 列の確認</div>
-  <div class="col-label">会社名が入っている列を選択してください（自動検出済み）</div>
+  <div class="card-title">Step 2 — 列の設定</div>
+
+  <div class="col-label">会社名が入っている列（自動検出済み）</div>
   <select class="col-select" id="companyCol"></select>
-  <div style="margin-top:14px" class="col-label">フォームURLが入っている列を選択してください（自動検出済み）</div>
+
+  <div style="margin-top:14px" class="col-label">フォームURLが入っている列（自動検出済み）</div>
   <select class="col-select" id="formUrlCol"></select>
 
-  <div id="sheetsInfo" class="sheets-info" style="display:none">
+  <div style="margin-top:20px" class="col-label">🗑️ 削除する列を選んでください（任意・複数OK）</div>
+  <div class="delete-cols-grid" id="deleteColsGrid"></div>
+
+  <div id="sheetsInfo" class="sheets-info" style="display:none;margin-top:16px">
     <div class="sheets-title">📋 処理対象シート（オレンジ = 分割予定）</div>
     <div id="sheetTags"></div>
   </div>
@@ -286,8 +241,7 @@ const uploadArea = document.getElementById('uploadArea');
 uploadArea.addEventListener('dragover', e => { e.preventDefault(); uploadArea.classList.add('drag-over'); });
 uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('drag-over'));
 uploadArea.addEventListener('drop', e => {
-  e.preventDefault();
-  uploadArea.classList.remove('drag-over');
+  e.preventDefault(); uploadArea.classList.remove('drag-over');
   if (e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
 });
 document.getElementById('fileInput').addEventListener('change', e => {
@@ -299,23 +253,20 @@ function handleFile(file) {
   const reader = new FileReader();
   reader.onload = e => {
     workbook = XLSX.read(e.target.result, { type: 'array' });
-
     let totalRows = 0;
     workbook.SheetNames.forEach(name => {
-      const sheet = workbook.Sheets[name];
-      const data = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: '' });
+      const data = XLSX.utils.sheet_to_json(workbook.Sheets[name], { header: 1, defval: '' });
       totalRows += data.length;
     });
 
     document.getElementById('fileName').textContent = file.name;
-    document.getElementById('fileRows').textContent =
-      `${workbook.SheetNames.length}シート / 合計約${totalRows}行`;
+    document.getElementById('fileRows').textContent = `${workbook.SheetNames.length}シート / 合計約${totalRows}行`;
     document.getElementById('fileLoaded').style.display = 'flex';
 
+    // シートタグ
     const sheetTags = document.getElementById('sheetTags');
     sheetTags.innerHTML = workbook.SheetNames.map(name => {
-      const sheet = workbook.Sheets[name];
-      const data = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: '' });
+      const data = XLSX.utils.sheet_to_json(workbook.Sheets[name], { header: 1, defval: '' });
       const rowCount = data.length;
       const willSplit = rowCount > MAX_ROWS;
       const splitCount = willSplit ? Math.ceil(rowCount / MAX_ROWS) : 1;
@@ -323,8 +274,8 @@ function handleFile(file) {
     }).join('');
     document.getElementById('sheetsInfo').style.display = 'block';
 
-    const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
-    const firstData = XLSX.utils.sheet_to_json(firstSheet, { header: 1, defval: '' });
+    // 1シート目から列検出
+    const firstData = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]], { header: 1, defval: '' });
     populateColumns(firstData[0] || [], firstData.slice(1));
 
     document.getElementById('colSelector').classList.add('visible');
@@ -336,43 +287,77 @@ function handleFile(file) {
 function populateColumns(firstRow, data) {
   const companyCol = document.getElementById('companyCol');
   const formUrlCol = document.getElementById('formUrlCol');
+  const deleteGrid = document.getElementById('deleteColsGrid');
   companyCol.innerHTML = '';
   formUrlCol.innerHTML = '';
+  deleteGrid.innerHTML = '';
 
   const numCols = Math.max(firstRow.length, data[0] ? data[0].length : 0);
   let formUrlGuess = -1;
 
   for (let i = 0; i < numCols; i++) {
     const header = firstRow[i] || `列${i + 1}`;
-    const sample = data[0] ? String(data[0][i] || '').slice(0, 20) : '';
+    const sample = data[0] ? String(data[0][i] || '').slice(0, 15) : '';
     const urlCount = data.slice(0, 10).filter(r => /https?:\/\//.test(r[i])).length;
+
     companyCol.appendChild(new Option(`${header}（例: ${sample}...）`, i));
     formUrlCol.appendChild(new Option(`${header}（例: ${sample}...）`, i));
     if (urlCount >= 3) formUrlGuess = i;
+
+    // 削除列チェックボックス
+    const item = document.createElement('label');
+    item.className = 'delete-col-item';
+    item.innerHTML = `
+      <input type="checkbox" value="${i}" onchange="this.closest('.delete-col-item').classList.toggle('checked', this.checked)">
+      <div>
+        <div class="delete-col-name">${header}</div>
+        <div class="delete-col-sample">例: ${sample}</div>
+      </div>`;
+    deleteGrid.appendChild(item);
   }
   if (formUrlGuess >= 0) formUrlCol.value = formUrlGuess;
 }
 
+function getDeleteColIndices() {
+  return [...document.querySelectorAll('#deleteColsGrid input[type="checkbox"]:checked')]
+    .map(cb => parseInt(cb.value));
+}
+
 function getRandomPositions(total, count) {
   const positions = new Set();
-  while (positions.size < count) {
-    positions.add(Math.floor(Math.random() * (total + 1)));
-  }
+  while (positions.size < count) positions.add(Math.floor(Math.random() * (total + 1)));
   return [...positions];
 }
 
-function addDummyRows(data, companyColIdx, formUrlColIdx) {
+function deleteColumns(data, deleteCols) {
+  if (deleteCols.length === 0) return data;
+  const deleteSet = new Set(deleteCols);
+  return data.map(row => row.filter((_, i) => !deleteSet.has(i)));
+}
+
+function addDummyRows(data, companyColIdx, formUrlColIdx, deleteCols) {
+  // 削除後の列インデックスを調整
+  const deleteSet = new Set(deleteCols);
+  let adjustedCompanyIdx = 0;
+  let adjustedFormUrlIdx = 0;
+  let offset = 0;
+  for (let i = 0; i <= Math.max(companyColIdx, formUrlColIdx); i++) {
+    if (deleteSet.has(i)) { offset++; continue; }
+    if (i === companyColIdx) adjustedCompanyIdx = i - offset;
+    if (i === formUrlColIdx) adjustedFormUrlIdx = i - offset;
+  }
+
   const numCols = data[0] ? data[0].length : 6;
   const dummyRows = DUMMY_COMPANIES.map(c => {
     const row = new Array(numCols).fill('');
-    row[companyColIdx] = c.name;
+    row[adjustedCompanyIdx] = c.name;
     if (numCols > 1) row[Math.min(1, numCols - 1)] = c.address;
     if (numCols > 2) row[Math.min(2, numCols - 1)] = c.website;
-    if (numCols > 3) row[Math.min(3, numCols - 1)] = c.tel;
     if (numCols > 4) row[Math.min(4, numCols - 1)] = c.contact;
-    row[formUrlColIdx] = c.formUrl;
+    if (adjustedFormUrlIdx < numCols) row[adjustedFormUrlIdx] = c.formUrl;
     return row;
   });
+
   const result = [...data];
   const positions = getRandomPositions(data.length, 5);
   positions.sort((a, b) => b - a);
@@ -385,27 +370,29 @@ function processFile() {
 
   const companyColIdx = parseInt(document.getElementById('companyCol').value);
   const formUrlColIdx = parseInt(document.getElementById('formUrlCol').value);
+  const deleteCols = getDeleteColIndices();
+
   const newWb = XLSX.utils.book_new();
   let summaryLines = [];
 
-  workbook.SheetNames.forEach(sheetName => {
-    const sheet = workbook.Sheets[sheetName];
-    const rawData = XLSX.utils.sheet_to_json(sheet, { header: 1, defval: '' });
+  if (deleteCols.length > 0) {
+    summaryLines.push(`🗑️ 削除した列: ${deleteCols.length}列<br>`);
+  }
 
+  workbook.SheetNames.forEach(sheetName => {
+    const rawData = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { header: 1, defval: '' });
     if (rawData.length === 0) {
       XLSX.utils.book_append_sheet(newWb, XLSX.utils.aoa_to_sheet([]), sheetName);
       return;
     }
 
     const firstRow = rawData[0];
-    const hasHeader = firstRow.some(cell =>
-      typeof cell === 'string' && cell.length < 20 && !/https?:\/\//.test(cell)
-    );
-    const headers = hasHeader ? firstRow : null;
-    const data = hasHeader ? rawData.slice(1) : rawData;
+    const hasHeader = firstRow.some(cell => typeof cell === 'string' && cell.length < 20 && !/https?:\/\//.test(cell));
+    const headers = hasHeader ? deleteColumns([firstRow], deleteCols)[0] : null;
+    const data = deleteColumns(hasHeader ? rawData.slice(1) : rawData, deleteCols);
 
     if (data.length <= MAX_ROWS) {
-      const result = addDummyRows(data, companyColIdx, formUrlColIdx);
+      const result = addDummyRows(data, companyColIdx, formUrlColIdx, deleteCols);
       const wsData = headers ? [headers, ...result] : result;
       XLSX.utils.book_append_sheet(newWb, XLSX.utils.aoa_to_sheet(wsData), sheetName);
       summaryLines.push(`✅ 「${sheetName}」: ${data.length}件 → ${result.length}件`);
@@ -413,7 +400,7 @@ function processFile() {
       let chunkIndex = 1;
       for (let i = 0; i < data.length; i += MAX_ROWS) {
         const chunk = data.slice(i, i + MAX_ROWS);
-        const result = addDummyRows(chunk, companyColIdx, formUrlColIdx);
+        const result = addDummyRows(chunk, companyColIdx, formUrlColIdx, deleteCols);
         const wsData = headers ? [headers, ...result] : result;
         const newSheetName = chunkIndex === 1 ? sheetName : `${sheetName}_${chunkIndex}`;
         XLSX.utils.book_append_sheet(newWb, XLSX.utils.aoa_to_sheet(wsData), newSheetName);
