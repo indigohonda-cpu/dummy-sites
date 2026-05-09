@@ -6,366 +6,117 @@
 <title>新興電子部品工業株式会社</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #f4f6fb;
-  --dark: #0f1923;
-  --blue: #1a5cff;
-  --blue-light: #4d7fff;
-  --cyan: #00d4ff;
-  --text: #1a1a2e;
-  --muted: #6b7a99;
-  --border: #e2e8f0;
-  --white: #ffffff;
-}
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Noto Sans JP', sans-serif; background: var(--bg); color: var(--text); }
+:root{--bg:#f4f6fb;--dark:#0f1923;--blue:#1a5cff;--cyan:#00d4ff;--text:#1a1a2e;--muted:#6b7a99;--border:#e2e8f0;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--text);}
+header{background:var(--dark);padding:0 48px;height:68px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.logo{display:flex;align-items:center;gap:12px;}
+.logo-box{width:36px;height:36px;background:linear-gradient(135deg,var(--blue),var(--cyan));border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif;font-weight:900;font-size:14px;color:white;}
+.logo-text{font-size:13px;font-weight:700;color:white;line-height:1.4;}
+.logo-text span{display:block;font-size:10px;font-weight:300;color:rgba(255,255,255,0.4);letter-spacing:1px;}
+nav a{color:rgba(255,255,255,0.5);text-decoration:none;font-size:12px;margin-left:28px;transition:color 0.2s;}
+nav a:hover{color:var(--cyan);}
 
-header {
-  background: var(--dark);
-  padding: 0 48px;
-  height: 68px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.logo-box {
-  width: 36px;
-  height: 36px;
-  background: linear-gradient(135deg, var(--blue), var(--cyan));
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Inter', sans-serif;
-  font-weight: 900;
-  font-size: 14px;
-  color: white;
-  letter-spacing: 0.5px;
-}
-.logo-text {
-  font-size: 13px;
-  font-weight: 700;
-  color: white;
-  line-height: 1.4;
-}
-.logo-text span {
-  display: block;
-  font-size: 10px;
-  font-weight: 300;
-  color: rgba(255,255,255,0.4);
-  letter-spacing: 1px;
-}
-nav a {
-  color: rgba(255,255,255,0.5);
-  text-decoration: none;
-  font-size: 12px;
-  margin-left: 28px;
-  letter-spacing: 0.5px;
-  transition: color 0.2s;
-}
-nav a:hover { color: var(--cyan); }
+.hero{position:relative;height:540px;overflow:hidden;display:flex;align-items:center;}
+.hero-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=1400&auto=format&fit=crop');background-size:cover;background-position:center;filter:brightness(0.15);}
+.hero-glow{position:absolute;top:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(26,92,255,0.3) 0%,transparent 70%);pointer-events:none;}
+.hero-content{position:relative;z-index:1;padding:0 60px;color:white;max-width:700px;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(0,212,255,0.3);color:var(--cyan);padding:5px 14px;border-radius:20px;font-size:11px;letter-spacing:1px;margin-bottom:24px;}
+.hero-badge::before{content:'';width:6px;height:6px;background:var(--cyan);border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+.hero h1{font-family:'Inter',sans-serif;font-weight:900;font-size:58px;color:white;line-height:1.15;margin-bottom:20px;letter-spacing:-1px;}
+.hero h1 .hl{background:linear-gradient(90deg,var(--blue),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-sub{color:rgba(255,255,255,0.5);font-size:14px;line-height:1.9;margin-bottom:40px;}
+.hero-metrics{display:flex;gap:40px;}
+.metric{border-left:2px solid var(--blue);padding-left:16px;}
+.metric-num{font-family:'Inter',sans-serif;font-weight:900;font-size:28px;color:white;line-height:1;margin-bottom:4px;}
+.metric-label{font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:1px;}
 
-.hero {
-  background: var(--dark);
-  padding: 80px 48px 100px;
-  position: relative;
-  overflow: hidden;
-}
-.hero::after {
-  content: '';
-  position: absolute;
-  top: -100px;
-  right: -100px;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(26,92,255,0.2) 0%, transparent 70%);
-  pointer-events: none;
-}
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  border: 1px solid rgba(0,212,255,0.3);
-  color: var(--cyan);
-  padding: 5px 14px;
-  border-radius: 20px;
-  font-size: 11px;
-  letter-spacing: 1px;
-  margin-bottom: 24px;
-}
-.hero-badge::before {
-  content: '';
-  width: 6px;
-  height: 6px;
-  background: var(--cyan);
-  border-radius: 50%;
-  animation: pulse 2s infinite;
-}
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
-}
-.hero h1 {
-  font-family: 'Inter', sans-serif;
-  font-weight: 900;
-  font-size: 56px;
-  color: white;
-  line-height: 1.15;
-  margin-bottom: 20px;
-  letter-spacing: -1px;
-}
-.hero h1 .highlight {
-  background: linear-gradient(90deg, var(--blue), var(--cyan));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.hero-sub {
-  color: rgba(255,255,255,0.5);
-  font-size: 14px;
-  line-height: 1.9;
-  max-width: 520px;
-  margin-bottom: 48px;
-}
-.hero-metrics {
-  display: flex;
-  gap: 48px;
-}
-.metric {
-  border-left: 2px solid var(--blue);
-  padding-left: 16px;
-}
-.metric-num {
-  font-family: 'Inter', sans-serif;
-  font-weight: 900;
-  font-size: 32px;
-  color: white;
-  line-height: 1;
-  margin-bottom: 4px;
-}
-.metric-label {
-  font-size: 11px;
-  color: rgba(255,255,255,0.4);
-  letter-spacing: 1px;
-}
+.photo-strip{display:grid;grid-template-columns:1fr 1fr 1fr;height:220px;gap:3px;}
+.photo-strip img{width:100%;height:100%;object-fit:cover;filter:brightness(0.8) saturate(1.2);transition:filter 0.3s;}
+.photo-strip img:hover{filter:brightness(1) saturate(1.4);}
 
-.section { padding: 72px 48px; }
-.label-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 10px;
-}
-.dot {
-  width: 8px;
-  height: 8px;
-  background: var(--blue);
-  border-radius: 50%;
-}
-.label-text {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--blue);
-}
-h2 {
-  font-family: 'Inter', sans-serif;
-  font-weight: 900;
-  font-size: 36px;
-  letter-spacing: -0.5px;
-  margin-bottom: 40px;
-}
-.service-list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-}
-.service-item {
-  background: white;
-  border-radius: 10px;
-  padding: 28px;
-  border: 1px solid var(--border);
-  display: flex;
-  gap: 20px;
-  align-items: flex-start;
-  transition: box-shadow 0.2s, border-color 0.2s;
-}
-.service-item:hover {
-  border-color: var(--blue);
-  box-shadow: 0 4px 20px rgba(26,92,255,0.1);
-}
-.service-icon {
-  width: 44px;
-  height: 44px;
-  background: linear-gradient(135deg, #eef2ff, #dce4ff);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  flex-shrink: 0;
-}
-.service-item h3 {
-  font-size: 15px;
-  font-weight: 700;
-  margin-bottom: 6px;
-}
-.service-item p {
-  font-size: 12px;
-  color: var(--muted);
-  line-height: 1.7;
-}
+.section{padding:72px 48px;}
+.label-row{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+.dot{width:8px;height:8px;background:var(--blue);border-radius:50%;}
+.label-text{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--blue);}
+h2{font-family:'Inter',sans-serif;font-weight:900;font-size:36px;letter-spacing:-0.5px;margin-bottom:40px;}
+.service-list{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+.service-item{background:white;border-radius:10px;padding:0;border:1px solid var(--border);overflow:hidden;transition:box-shadow 0.2s,border-color 0.2s;}
+.service-item:hover{border-color:var(--blue);box-shadow:0 4px 20px rgba(26,92,255,0.1);}
+.service-photo{height:140px;overflow:hidden;}
+.service-photo img{width:100%;height:100%;object-fit:cover;}
+.service-body{padding:22px;}
+.service-body h3{font-size:15px;font-weight:700;margin-bottom:6px;}
+.service-body p{font-size:12px;color:var(--muted);line-height:1.7;}
 
-.about-section {
-  background: white;
-  padding: 72px 48px;
-}
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: start;
-}
-.about-text p {
-  font-size: 13px;
-  color: #444;
-  line-height: 2;
-  margin-bottom: 14px;
-}
-.info-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  overflow: hidden;
-}
-.info-item {
-  display: grid;
-  grid-template-columns: 130px 1fr;
-  border-bottom: 1px solid var(--border);
-}
-.info-item:last-child { border-bottom: none; }
-.info-key {
-  padding: 14px 18px;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--blue);
-  background: #f8faff;
-  letter-spacing: 0.5px;
-}
-.info-val {
-  padding: 14px 18px;
-  font-size: 13px;
-  color: var(--text);
-}
+.about-section{background:white;padding:72px 48px;}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+.about-photo{height:280px;overflow:hidden;border-radius:8px;}
+.about-photo img{width:100%;height:100%;object-fit:cover;}
+.about-text p{font-size:13px;color:#444;line-height:2;margin-bottom:14px;}
+.info-grid{border:1px solid var(--border);border-radius:8px;overflow:hidden;}
+.info-item{display:grid;grid-template-columns:130px 1fr;border-bottom:1px solid var(--border);}
+.info-item:last-child{border-bottom:none;}
+.info-key{padding:14px 18px;font-size:12px;font-weight:700;color:var(--blue);background:#f8faff;}
+.info-val{padding:14px 18px;font-size:13px;color:var(--text);}
 
-.form-section {
-  padding: 72px 48px;
-  background: var(--bg);
-}
-.form-wrapper {
-  max-width: 780px;
-  background: white;
-  border-radius: 10px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-}
-.form-wrapper iframe {
-  width: 100%;
-  min-height: 680px;
-  border: none;
-  display: block;
-}
+.form-section{padding:72px 48px;background:var(--bg);}
+.form-wrapper{max-width:780px;background:white;border-radius:10px;overflow:hidden;border:1px solid var(--border);box-shadow:0 4px 20px rgba(0,0,0,0.05);}
+.form-wrapper iframe{width:100%;min-height:680px;border:none;display:block;}
 
-footer {
-  background: var(--dark);
-  padding: 28px 48px;
-  display: flex;
-  justify-content: space-between;
-  font-size: 12px;
-  color: rgba(255,255,255,0.3);
-}
+footer{background:var(--dark);padding:28px 48px;display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,0.3);}
 </style>
 </head>
 <body>
-
 <header>
   <div class="logo">
     <div class="logo-box">SE</div>
-    <div class="logo-text">
-      新興電子部品工業株式会社
-      <span>Shinko Electronic Components</span>
-    </div>
+    <div class="logo-text">新興電子部品工業株式会社<span>Shinko Electronic Components</span></div>
   </div>
-  <nav>
-    <a href="#">製品・技術</a>
-    <a href="#">基板実装</a>
-    <a href="#">会社概要</a>
-    <a href="#">お問い合わせ</a>
-  </nav>
+  <nav><a href="#">製品・技術</a><a href="#">基板実装</a><a href="#">会社概要</a><a href="#">お問い合わせ</a></nav>
 </header>
 
 <section class="hero">
-  <div class="hero-badge">電子部品製造 · 基板実装 · EMS</div>
-  <h1>電子製造の<br><span class="highlight">次世代</span>を<br>担う技術</h1>
-  <p class="hero-sub">電子部品製造から基板実装まで。IoT・車載・産業用機器向けの高信頼性部品をワンストップで製造。試作から量産まで対応します。</p>
-  <div class="hero-metrics">
-    <div class="metric">
-      <div class="metric-num">34年</div>
-      <div class="metric-label">創業実績</div>
-    </div>
-    <div class="metric">
-      <div class="metric-num">400社</div>
-      <div class="metric-label">取引先</div>
-    </div>
-    <div class="metric">
-      <div class="metric-num">99.8%</div>
-      <div class="metric-label">品質合格率</div>
+  <div class="hero-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-badge">電子部品製造 · 基板実装 · EMS</div>
+    <h1>電子製造の<br><span class="hl">次世代</span>を<br>担う技術</h1>
+    <p class="hero-sub">電子部品製造から基板実装まで。IoT・車載・産業用機器向けの高信頼性部品をワンストップで製造。試作から量産まで対応します。</p>
+    <div class="hero-metrics">
+      <div class="metric"><div class="metric-num">34年</div><div class="metric-label">創業実績</div></div>
+      <div class="metric"><div class="metric-num">400社</div><div class="metric-label">取引先</div></div>
+      <div class="metric"><div class="metric-num">99.8%</div><div class="metric-label">品質合格率</div></div>
     </div>
   </div>
 </section>
+
+<div class="photo-strip">
+  <img src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=600&auto=format&fit=crop" alt="電子基板">
+  <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop" alt="電子部品">
+  <img src="https://images.unsplash.com/photo-1563302111-eab4b145e6c9?w=600&auto=format&fit=crop" alt="製造ライン">
+</div>
 
 <section class="section">
   <div class="label-row"><div class="dot"></div><div class="label-text">Services</div></div>
   <h2>事業・サービス</h2>
   <div class="service-list">
     <div class="service-item">
-      <div class="service-icon">🔌</div>
-      <div>
-        <h3>電子部品製造</h3>
-        <p>コネクタ・スイッチ・センサーなどの電子部品を高精度・大量生産。</p>
-      </div>
+      <div class="service-photo"><img src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=600&auto=format&fit=crop" alt="電子部品"></div>
+      <div class="service-body"><h3>電子部品製造</h3><p>コネクタ・スイッチ・センサーなどの電子部品を高精度・大量生産。</p></div>
     </div>
     <div class="service-item">
-      <div class="service-icon">🖥️</div>
-      <div>
-        <h3>基板実装（SMT/DIP）</h3>
-        <p>表面実装・スルーホール実装に対応。高密度実装基板の量産に強み。</p>
-      </div>
+      <div class="service-photo"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop" alt="基板実装"></div>
+      <div class="service-body"><h3>基板実装（SMT/DIP）</h3><p>表面実装・スルーホール実装に対応。高密度実装基板の量産に強み。</p></div>
     </div>
     <div class="service-item">
-      <div class="service-icon">🏭</div>
-      <div>
-        <h3>EMS（電子機器製造受託）</h3>
-        <p>設計から製造・検査・梱包まで一貫したEMSサービスを提供。</p>
-      </div>
+      <div class="service-photo"><img src="https://images.unsplash.com/photo-1563302111-eab4b145e6c9?w=600&auto=format&fit=crop" alt="EMS"></div>
+      <div class="service-body"><h3>EMS（電子機器製造受託）</h3><p>設計から製造・検査・梱包まで一貫したEMSサービスを提供。</p></div>
     </div>
     <div class="service-item">
-      <div class="service-icon">🔍</div>
-      <div>
-        <h3>品質保証・検査</h3>
-        <p>AOI・X線検査・機能検査による品質保証体制。不良率0.2%以下を維持。</p>
-      </div>
+      <div class="service-photo"><img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&auto=format&fit=crop" alt="品質検査"></div>
+      <div class="service-body"><h3>品質保証・検査</h3><p>AOI・X線検査・機能検査による品質保証体制。不良率0.2%以下を維持。</p></div>
     </div>
   </div>
 </section>
@@ -374,35 +125,19 @@ footer {
   <div class="label-row"><div class="dot"></div><div class="label-text">Company</div></div>
   <h2>会社概要</h2>
   <div class="about-grid">
-    <div class="about-text">
-      <p>新興電子部品工業株式会社は、1990年の創業以来、電子部品製造・基板実装分野のリーディングカンパニーとして成長してまいりました。</p>
-      <p>IoT・EV・スマートファクトリー向け部品の需要増大に対応するため、最新設備への継続的投資と技術者育成に注力しています。</p>
+    <div>
+      <div class="about-photo"><img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&auto=format&fit=crop" alt="工場"></div>
+      <div class="about-text" style="margin-top:24px;">
+        <p>新興電子部品工業株式会社は、1990年の創業以来、電子部品製造・基板実装分野のリーディングカンパニーとして成長してまいりました。IoT・EV・スマートファクトリー向け部品の需要増大に対応するため、最新設備への継続的投資と技術者育成に注力しています。</p>
+      </div>
     </div>
     <div class="info-grid">
-      <div class="info-item">
-        <div class="info-key">社名</div>
-        <div class="info-val">新興電子部品工業株式会社</div>
-      </div>
-      <div class="info-item">
-        <div class="info-key">設立</div>
-        <div class="info-val">1990年3月</div>
-      </div>
-      <div class="info-item">
-        <div class="info-key">代表取締役</div>
-        <div class="info-val">渡辺 健太</div>
-      </div>
-      <div class="info-item">
-        <div class="info-key">所在地</div>
-        <div class="info-val">神奈川県横浜市</div>
-      </div>
-      <div class="info-item">
-        <div class="info-key">従業員数</div>
-        <div class="info-val">150名</div>
-      </div>
-      <div class="info-item">
-        <div class="info-key">認証</div>
-        <div class="info-val">ISO9001 / IATF16949</div>
-      </div>
+      <div class="info-item"><div class="info-key">社名</div><div class="info-val">新興電子部品工業株式会社</div></div>
+      <div class="info-item"><div class="info-key">設立</div><div class="info-val">1990年3月</div></div>
+      <div class="info-item"><div class="info-key">代表取締役</div><div class="info-val">渡辺 健太</div></div>
+      <div class="info-item"><div class="info-key">所在地</div><div class="info-val">神奈川県横浜市</div></div>
+      <div class="info-item"><div class="info-key">従業員数</div><div class="info-val">150名</div></div>
+      <div class="info-item"><div class="info-key">認証</div><div class="info-val">ISO9001 / IATF16949</div></div>
     </div>
   </div>
 </section>
@@ -419,6 +154,5 @@ footer {
   <span>© 2024 新興電子部品工業株式会社 All Rights Reserved.</span>
   <span>神奈川県横浜市 | TEL: 045-XXX-XXXX</span>
 </footer>
-
 </body>
 </html>
